@@ -1,0 +1,285 @@
+/* Kebabish Catering 1.1.8 – order module.
+ * Builds on theme tokens in assets/css/kebabish-catering.css (--kc-*). No new palette. */
+
+.kco-sr,
+.kco-hp {
+	position: absolute !important;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+/* ---------- Test banner / errors ---------- */
+.kco-test {
+	margin: 0 0 22px !important;
+	padding: 10px 14px;
+	border: 1px dashed var(--kc-rust, #B83A2E);
+	border-radius: 4px;
+	color: var(--kc-rust, #B83A2E);
+	font-size: .8rem !important;
+	font-weight: 700;
+}
+.kco-error {
+	display: block;
+	margin-top: 6px;
+	color: #ffb4a8;
+	font-size: .78rem;
+	line-height: 1.45;
+}
+.kc-packages .kco-error { color: var(--kc-rust, #B83A2E); }
+.kco-error--block {
+	margin: 0 0 18px !important;
+	padding: 12px 14px;
+	border-left: 3px solid var(--kc-rust, #B83A2E);
+	background: rgba(184, 58, 46, .10);
+	font-size: .85rem !important;
+}
+.kco-error--block:focus { outline: 2px solid var(--kc-gold, #C69A50); outline-offset: 2px; }
+.kco-error--block ul { margin: 6px 0 0; padding-left: 18px; }
+
+/* ---------- Package cards ---------- */
+.kco-item.kc-package-card {
+	transition: border-color .15s ease, box-shadow .15s ease;
+}
+.kco-item.kc-package-card.is-selected {
+	border-color: var(--kc-rust, #B83A2E);
+	box-shadow: 0 0 0 1px var(--kc-rust, #B83A2E), var(--kc-shadow, 0 18px 55px rgba(16,17,15,.10));
+}
+.kco-media--empty {
+	background:
+		radial-gradient(circle at 30% 70%, rgba(198,154,80,.35), transparent 55%),
+		linear-gradient(135deg, #1A1A1A, #10110F) !important;
+}
+.kc-package-card .kco-price {
+	margin: auto 0 2px !important;
+	color: var(--kc-text, #22231f);
+}
+.kc-package-card .kco-price strong { font-size: 1.15rem; }
+.kc-package-card .kco-min {
+	margin: 0 0 14px !important;
+	font-size: .78rem;
+}
+
+/* ---------- Stepper ---------- */
+.kco-stepper {
+	display: grid;
+	grid-template-columns: 48px 1fr 48px;
+	min-height: 48px;
+	border: 1px solid var(--kc-line, rgba(16,17,15,.12));
+	border-radius: 4px;
+	background: var(--kc-white, #fff);
+	overflow: hidden;
+}
+.kco-stepper__btn {
+	border: 0;
+	background: transparent;
+	color: var(--kc-charcoal, #10110F);
+	font-size: 1.3rem;
+	font-weight: 600;
+	line-height: 1;
+	cursor: pointer;
+}
+.kco-stepper__btn:hover { background: var(--kc-cream, #F6F0E4); }
+.kco-stepper__btn:focus-visible,
+.kco-stepper__input:focus-visible {
+	outline: 2px solid var(--kc-rust, #B83A2E);
+	outline-offset: -2px;
+}
+.kco-stepper__input {
+	width: 100%;
+	min-width: 0;
+	border: 0;
+	border-inline: 1px solid var(--kc-line, rgba(16,17,15,.12));
+	background: transparent;
+	color: var(--kc-charcoal, #10110F);
+	font: inherit;
+	font-size: 1rem;
+	font-weight: 700;
+	text-align: center;
+	-moz-appearance: textfield;
+}
+.kco-stepper__input::-webkit-outer-spin-button,
+.kco-stepper__input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.is-selected .kco-stepper { border-color: var(--kc-rust, #B83A2E); }
+
+/* ---------- Add-ons ---------- */
+.kco-addons { margin-top: clamp(34px, 5vw, 56px); }
+.kco-addons h3 {
+	margin: 0 0 14px !important;
+	font-size: 1.35rem !important;
+}
+.kco-addon-list {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+	gap: 10px 18px;
+}
+.kco-addon {
+	display: grid;
+	grid-template-columns: 1fr 150px;
+	gap: 14px;
+	align-items: center;
+	padding: 12px 14px;
+	border: 1px solid rgba(16,17,15,.09);
+	border-radius: 8px;
+	background: rgba(255,255,255,.58);
+}
+.kco-addon.is-selected { border-color: var(--kc-rust, #B83A2E); }
+.kco-addon__name { display: block; font-weight: 700; }
+.kco-addon__price { display: block; color: var(--kc-soft, #64645d); font-size: .82rem; }
+.kco-addon .kco-stepper { grid-template-columns: 40px 1fr 40px; min-height: 42px; }
+
+/* ---------- Summary (dark section, left column) ---------- */
+.kco-summary {
+	margin-top: 28px;
+	padding: 20px 0 0;
+	border-top: 1px solid var(--kc-gold-line, rgba(198,154,80,.46));
+	color: rgba(255,255,255,.86);
+}
+.kco-summary__empty { margin: 0 !important; color: rgba(255,255,255,.66); }
+.kco-summary__empty a { color: var(--kc-gold, #C69A50); }
+.kco-summary__lines { margin: 0; padding: 0; list-style: none; }
+.kco-summary__lines li {
+	display: flex;
+	justify-content: space-between;
+	gap: 16px;
+	padding: 9px 0;
+	border-bottom: 1px solid rgba(255,255,255,.10);
+	font-size: .9rem;
+}
+.kco-summary__lines li span:last-child { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.kco-summary__persons {
+	display: flex;
+	justify-content: space-between;
+	margin: 12px 0 0 !important;
+	color: rgba(255,255,255,.86);
+	font-size: .9rem;
+}
+.kco-summary__persons span { color: rgba(255,255,255,.72); }
+.kco-total-min {
+	display: inline-block;
+	margin: 10px 0 0 !important;
+	padding: 6px 12px;
+	border-left: 3px solid var(--kc-rust, #B83A2E);
+	background: rgba(184, 58, 46, .06);
+	color: var(--kc-text, #22231f) !important;
+	font-weight: 700;
+	font-size: .9rem;
+}
+.kco-summary__total {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	margin: 14px 0 0 !important;
+}
+.kco-summary__total span { color: rgba(255,255,255,.72); font-size: .85rem; }
+.kco-summary__total strong {
+	color: var(--kc-white, #fff);
+	font-family: Literata, Georgia, serif;
+	font-size: 1.9rem;
+	font-weight: 400;
+	font-variant-numeric: tabular-nums;
+}
+.kco-summary__warn {
+	margin: 10px 0 0 !important;
+	color: #ffb4a8;
+	font-size: .82rem !important;
+}
+
+/* ---------- Form (dark section, right column) ---------- */
+.kco-form { gap: 18px; }
+.kco-fieldset {
+	display: grid;
+	gap: 11px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	min-width: 0;
+}
+.kco-fieldset legend {
+	margin: 0 0 4px;
+	padding: 0;
+	color: var(--kc-gold, #C69A50);
+	font-size: .78rem;
+	font-weight: 800;
+	letter-spacing: .04em;
+}
+.kco-pickup { margin: 0 !important; color: var(--kc-white, #fff); font-weight: 700; }
+.kco-hint { margin: 0 !important; color: rgba(255,255,255,.56); font-size: .74rem !important; }
+.kco-row {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 11px;
+}
+
+/* Visible labels: override the theme's visually-hidden label>span rule. */
+.kco-form .kco-field > .kco-field__label,
+.kco-form .kco-field > .kco-error {
+	position: static;
+	width: auto;
+	height: auto;
+	overflow: visible;
+	clip: auto;
+	clip-path: none;
+	white-space: normal;
+}
+.kco-form .kco-field > .kco-field__label {
+	display: block;
+	margin-bottom: 6px;
+	color: rgba(255,255,255,.78);
+	font-size: .76rem;
+	font-weight: 700;
+}
+.kco-form select {
+	width: 100%;
+	min-height: 51px;
+	padding: 0 15px;
+	border: 1px solid rgba(255,255,255,.28);
+	border-radius: 4px;
+	outline: none;
+	background: rgba(17,18,16,.80);
+	color: var(--kc-white, #fff);
+	font: inherit;
+	font-size: .9rem;
+}
+.kco-form input[type="date"],
+.kco-form select { color-scheme: dark; }
+.kco-form select:focus { border-color: var(--kc-gold, #C69A50); }
+.kco-form input:focus-visible,
+.kco-form textarea:focus-visible,
+.kco-form select:focus-visible {
+	outline: 2px solid var(--kc-gold, #C69A50);
+	outline-offset: 1px;
+}
+.kco-field.has-error input,
+.kco-field.has-error select,
+.kco-field.has-error textarea { border-color: #ff8a78; }
+.kco-form button[type="submit"] { cursor: pointer; }
+.kco-form button[type="submit"][aria-busy="true"] { opacity: .7; cursor: progress; }
+
+/* ---------- Done / closed ---------- */
+.kco-done,
+.kco-closed { padding: clamp(70px, 8vw, 120px) 0; }
+.kco-done h2,
+.kco-closed h2 { margin-bottom: 18px !important; }
+.kco-done p,
+.kco-closed p { max-width: 620px; color: rgba(255,255,255,.80); line-height: 1.7; }
+.kco-done strong { color: var(--kc-white, #fff); }
+.kco-done-pickup { font-size: 1.05rem; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+	.kco-row { grid-template-columns: 1fr; }
+	.kco-addon { grid-template-columns: 1fr 132px; }
+	.kco-summary__total strong { font-size: 1.6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.kco-item.kc-package-card { transition: none; }
+}
+
+/* Occasion field — shared by /catering/ and future social landing. */
+.kco-occasion-select { display:block; width:100%; min-height:44px; padding:10px 12px; border:1px solid #b9b4aa; border-radius:6px; background:#fff; color:#171717; font:inherit; }
+.kco-occasion-select:focus-visible { outline:3px solid #c51922; outline-offset:2px; }
