@@ -1,30 +1,25 @@
-/* Kebabish Catering – Cateringmenyer cards from WooCommerce (issue #4).
- * Builds on the theme's .kc-package-card styles (kebabish-catering.css); only additions here. */
-.kcm__grid { align-items: stretch; }
-.kcm__card .kc-package-card__media { position: relative; }
-.kcm__media--empty { background: var(--kc-muted, #DDD3C2); }
-.kcm__badge {
-	position: absolute;
-	left: 12px;
-	bottom: 12px;
-	max-width: calc(100% - 24px);
-	padding: 5px 10px;
-	border-radius: 4px;
-	background: var(--kc-rust, #B83A2E);
-	color: #fff;
-	font-size: .7rem;
-	font-weight: 800;
-	letter-spacing: .04em;
-}
-.kcm__contents {
-	margin: 0 0 16px !important;
-	padding: 0 0 0 18px !important;
-	color: var(--kc-soft, #64645d);
-	font-size: .9rem;
-	line-height: 1.5;
-}
-.kcm__contents li { margin: 0 0 3px; }
-.kcm__price { margin: auto 0 14px !important; color: var(--kc-text, #22231f) !important; }
-.kcm__price strong { font-size: 1.35rem; }
-.kcm__price span { color: var(--kc-soft, #64645d); font-size: .85rem; }
-.kcm__cta svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; }
+/* Kebabish Catering – «Cateringmenyer» from WooCommerce (issue #4).
+ * Same rules as the approved inline showcase style in page-catering.html (13.10), moved into the plugin,
+ * plus price line, campaign badge and empty-image state. */
+.kc-page .kca-gallery{display:none!important}
+.kc-menu-showcase{background:#f6f0e4;color:#22231f;padding:80px 0 92px}
+.kc-menu-showcase__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:36px}
+.kc-menu-showcase__card{background:#fffdf8;border:1px solid rgba(16,17,15,.10);border-radius:18px;overflow:hidden;box-shadow:0 12px 36px rgba(16,17,15,.09);display:flex;flex-direction:column}
+.kc-menu-showcase__photo{position:relative;aspect-ratio:4/3;overflow:hidden;background:#171814}
+.kc-menu-showcase__photo img{width:100%;height:100%;object-fit:cover;display:block}
+.kc-menu-showcase__body{padding:27px 24px 30px;display:flex;flex-direction:column;flex:1}
+.kc-menu-showcase__eyebrow{font-size:11px!important;font-weight:800;letter-spacing:.16em;color:#a05231;margin:0 0 10px!important;text-transform:uppercase}
+.kc-menu-showcase__body h3{font-size:clamp(25px,2.3vw,33px)!important;line-height:1.16;margin:0 0 9px!important}
+.kc-menu-showcase__taste{color:#a05231;font-weight:750;font-size:13px!important;letter-spacing:.02em;margin:0 0 19px!important}
+.kc-menu-showcase__description{font-size:15px!important;line-height:1.68;color:#30312c;margin:0 0 18px!important}
+.kc-menu-showcase__includes{margin:auto 0 0!important;padding-top:15px;border-top:1px solid #e7ded0;color:#55584e;font-size:13px!important;line-height:1.65}
+.kc-menu-showcase__includes strong{color:#262923}
+.kc-menu-showcase__price{margin:14px 0 0!important;color:#55584e;font-size:13px!important}
+.kc-menu-showcase__includes+.kc-menu-showcase__price{margin-top:12px!important}
+.kc-menu-showcase__description+.kc-menu-showcase__price,.kc-menu-showcase__body h3+.kc-menu-showcase__price{margin-top:auto!important}
+.kc-menu-showcase__price strong{color:#22231f;font-size:20px;font-variant-numeric:tabular-nums}
+.kc-menu-showcase__badge{position:absolute;left:14px;bottom:14px;max-width:calc(100% - 28px);padding:6px 11px;border-radius:999px;background:#b83a2e;color:#fff;font-size:11px;font-weight:800;letter-spacing:.06em}
+.kc-menu-showcase__foot{text-align:center;color:#66685f;font-size:13px!important;margin:25px 0 18px!important}
+.kc-menu-showcase__cta{display:flex!important;align-items:center;justify-content:center;gap:10px;width:max-content;max-width:100%;margin:0 auto;text-align:center}
+@media(max-width:960px){.kc-menu-showcase__grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.kc-menu-showcase{padding:55px 0 66px}.kc-menu-showcase__grid{grid-template-columns:1fr;gap:20px}.kc-menu-showcase__photo{aspect-ratio:16/10}.kc-menu-showcase__body{padding:24px 21px 27px}.kc-menu-showcase__cta{width:100%}}
