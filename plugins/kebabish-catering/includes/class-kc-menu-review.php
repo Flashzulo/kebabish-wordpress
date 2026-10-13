@@ -178,7 +178,10 @@ final class KC_Menu_Review {
 				'status' => $status,
 				'why'    => $why,
 				'rev'    => is_array( $rev ) ? $rev : array(),
-				'sug'    => self::suggestion( $p->get_name(), '' !== $group ? $group : 'Annet', KC_Catalog::unit( $p ), $tags, (float) $p->get_price() ),
+				'sug'    => $p->get_meta( '_kc_catering_proposal_source' ) && $p->get_meta( '_kc_catering_proposal_portion' )
+					? array( 'portion' => (string) $p->get_meta( '_kc_catering_proposal_portion' ), 'price' => (float) $p->get_meta( '_kc_catering_proposal_price' ) )
+					: self::suggestion( $p->get_name(), '' !== $group ? $group : 'Annet', KC_Catalog::unit( $p ), $tags, (float) $p->get_price() ),
+				'seeded' => (bool) $p->get_meta( '_kc_catering_proposal_source' ),
 			);
 		}
 		return $out;
@@ -325,8 +328,8 @@ final class KC_Menu_Review {
 		<li><span class="tag reserve">Valgfri</span> <span>Kan kuttes, så lenge «Behold»-retten med samme rolle står.</span></li>
 		<li><span class="tag free">Din vurdering</span> <span>Påvirker ikke forslagene. Behold det som selger.</span></li>
 	</ul>
-	<p class="lede">Trykk <b>Behold</b> eller <b>Kutt</b> på hver rett, og <b>Lagre</b> nederst. Ingenting endres på nettsiden før Saulo har gått gjennom svarene.</p>
-	<p class="lede"><b>Porsjon og pris er ferdig foreslått</b> på hver rett: små porsjoner per person, fordi tilleggene skal passe til antall gjester. Er forslaget greit, trenger du ikke gjøre noe. Er det feil, trykk «Endre» og skriv riktig.</p>
+	<p class="lede">Trykk <b>Behold</b> eller <b>Kutt</b> på hver rett, og <b>Lagre</b> nederst. Porsjon og cateringpris ligger allerede i WooCommerce som foreløpige forslag. Dine endringer lagres som vurderinger; Saulo overfører senere kun produktene du endrer.</p>
+	<p class="lede"><b>Porsjon og pris er overført som cateringforslag</b> på hver rett: små ekstra porsjoner eller delingsenheter. Antall som anbefales i bestillingsveilederen er kun forslag til mersalg, ikke en ny full servering til alle gjestene. Er forslaget greit, trenger du ikke gjøre noe. Er det feil, trykk «Endre» og skriv riktig.</p>
 	<?php if ( '1' === $saved ) : ?>
 		<p class="notice" role="status">Lagret. Takk!</p>
 	<?php elseif ( 'limit' === $saved ) : ?>
@@ -364,7 +367,7 @@ final class KC_Menu_Review {
 					<div class="info">
 						<p class="top"><span class="name"><?php echo esc_html( $d['name'] ); ?></span> <span class="price"><?php echo esc_html( 'kr ' . number_format( $d['price'], 0, ',', ' ' ) ); ?></span><?php if ( $d['nut'] ) : ?> <span class="nut">nøtter</span><?php endif; ?></p>
 						<p class="why"><?php echo esc_html( $d['why'] ); ?></p>
-						<p class="sug"><b>Forslag:</b> <?php echo esc_html( $d['sug']['portion'] ); ?><?php if ( null !== $d['sug']['price'] ) : ?> · <b><?php echo esc_html( 'kr ' . $d['sug']['price'] ); ?></b> <span class="was"><?php echo esc_html( '(i dag kr ' . number_format( $d['price'], 0, ',', ' ' ) . ')' ); ?></span><?php endif; ?></p>
+						<p class="sug"><b><?php echo ! empty( $d['seeded'] ) ? 'Cateringforslag lagt inn:' : 'Forslag:'; ?></b> <?php echo esc_html( $d['sug']['portion'] ); ?><?php if ( null !== $d['sug']['price'] ) : ?> · <b><?php echo esc_html( 'kr ' . $d['sug']['price'] ); ?></b><?php if ( empty( $d['seeded'] ) ) : ?> <span class="was"><?php echo esc_html( '(i dag kr ' . number_format( $d['price'], 0, ',', ' ' ) . ')' ); ?></span><?php endif; ?><?php endif; ?></p>
 					</div>
 					<div class="seg" role="radiogroup" aria-label="<?php echo esc_attr( 'Beholde ' . $d['name'] . '?' ); ?>">
 						<?php foreach ( array( 'keep' => 'Behold', 'cut' => 'Kutt', 'unsure' => '?' ) as $v => $l ) : ?>
@@ -536,10 +539,11 @@ final class KC_Menu_Review {
 			header( 'Content-Disposition: attachment; filename="catering-tillegg-vurdering-' . wp_date( 'Y-m-d' ) . '.csv"' );
 			$out = fopen( 'php://output', 'w' );
 			fwrite( $out, "\xEF\xBB\xBF" );
-			fputcsv( $out, array( 'ID', 'SKU', 'Navn', 'Gruppe', 'Pris nå', 'Rolle', 'Beslutning', 'Ny porsjon', 'Ny pris', 'Kommentar', 'Merker', 'Forslagsregel' ), ';' );
+			fputcsv( $out, array( 'ID', 'SKU', 'Navn', 'Gruppe', 'Pris nå', 'Rolle', 'Beslutning', 'Ny porsjon', 'Ny pris', 'Kommentar', 'Merker', 'Forslagsregel', 'Endret fra overfort forslag', 'Forslag porsjon', 'Forslag pris' ), ';' );
 			foreach ( self::dishes() as $d ) {
 				$r = $d['rev'];
-				$row = array( $d['id'], $d['sku'], $d['name'], $d['group'], $d['price'], $d['status'], $r['decision'] ?? '', $r['portion'] ?? '', $r['price'] ?? '', $r['note'] ?? '', implode( ',', $d['tags'] ), $d['rule'] );
+				$diff = ( '' !== (string) ( $r['portion'] ?? '' ) && (string) $r['portion'] !== (string) $d['sug']['portion'] ) || ( '' !== (string) ( $r['price'] ?? '' ) && (float) str_replace( ',', '.', (string) $r['price'] ) !== (float) ( $d['sug']['price'] ?? $d['price'] ) ) || 'cut' === (string) ( $r['decision'] ?? '' ) || '' !== (string) ( $r['note'] ?? '' );
+					$row = array( $d['id'], $d['sku'], $d['name'], $d['group'], $d['price'], $d['status'], $r['decision'] ?? '', $r['portion'] ?? '', $r['price'] ?? '', $r['note'] ?? '', implode( ',', $d['tags'] ), $d['rule'], $diff ? 'JA' : 'NEI', $d['sug']['portion'], $d['sug']['price'] ?? $d['price'] );
 				// Neutralise spreadsheet formulas in free text.
 				$row = array_map( function ( $v ) { $v = (string) $v; return preg_match( '/^[=+\-@]/', $v ) ? "'" . $v : $v; }, $row );
 				fputcsv( $out, $row, ';' );
