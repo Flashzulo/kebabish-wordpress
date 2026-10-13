@@ -15,6 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 require_once __DIR__ . '/class-kc-advisor.php';
+require_once __DIR__ . '/class-kc-menu-review.php';
 
 final class KC_Intake {
 
@@ -29,11 +30,12 @@ final class KC_Intake {
 		add_action( 'admin_post_' . self::ACTION, array( __CLASS__, 'handle' ) );
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'register_assets' ) );
 		KC_Advisor::init();
+		KC_Menu_Review::init();
 	}
 
 	public static function register_assets() {
 		// Asset revision suffix busts caches without changing KC_VERSION (which would run maybe_upgrade()).
-		$asset_ver = KC_VERSION . '-v2';
+		$asset_ver = KC_VERSION . '-v2.1';
 		wp_register_style( 'kc-order', KC_URL . 'assets/kc-order.css', array(), $asset_ver );
 		wp_register_style( 'kc-advisor', KC_URL . 'assets/kc-advisor.css', array( 'kc-order' ), $asset_ver );
 		wp_register_script( 'kc-advisor', KC_URL . 'assets/kc-advisor.js', array(), $asset_ver, true );

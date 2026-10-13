@@ -229,7 +229,8 @@
 			list.push({ tags: ['mild'], reason: 'Dere ønsket mild mat', base: 0, none: T.mild_none });
 		}
 		if (c > 0) {
-			list.push({ tags: ['kids', 'mild'], reason: 'Til barna (' + c + ')', base: c });
+			// Children: something they like (dessert) rather than another curry; quantity = number of children.
+			list.push({ tags: ['kids', 'dessert'], reason: 'Til barna (' + c + ')', base: c });
 		}
 		var oi = (cfg() && cfg().intents) || {};
 		steps().forEach(function (st) {
@@ -262,8 +263,8 @@
 		var n = guests() || MIN_PERSONS || 1;
 		var q;
 		switch (p.rule) {
-			case 'guest': q = n; break;
-			case 'guest4': q = Math.ceil(n / 4); break;
+			case 'guest': q = it.base || n; break;
+			case 'guest4': q = Math.ceil((it.base || n) / 4); break;
 			case 'group': q = it.base || Math.ceil(n / 4); break;
 			default: q = 1;
 		}
@@ -280,6 +281,10 @@
 			}
 			// Intent already covered by something the customer chose -> the next one moves up.
 			if (ADDS.some(function (p) { return S.qty[p.id] && tagged(p, it.tags); })) {
+				return;
+			}
+			// Intent already answered by a suggestion above (e.g. birthday dessert after the children's dessert).
+			if (out.some(function (s) { return tagged(s.p, it.tags); })) {
 				return;
 			}
 			var pick = null;
