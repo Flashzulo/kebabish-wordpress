@@ -7,8 +7,10 @@
  *   eyebrow          = product meta _kc_eyebrow   (optional, e.g. «KULLGRILL OG KARAKTER»)
  *   name             = product name
  *   taste line       = product meta _kc_taste     (optional, e.g. «Saftig · Krydret · Grillpreget»)
- *   description      = product short description (sales text)
- *   «I menyen»       = product description, one item per line/bullet
+ *   description      = product meta _kc_card_text (sales text); falls back to the short description
+ *   «I menyen»       = product meta _kc_includes, one item per line; falls back to the product description
+ * The card fields are separate meta so the product's own short description / description (portion sizes,
+ * per-person weights, 10-person example, notes) are never overwritten to feed the card (QA V2.5.2).
  *   price            = current product price per person
  *   campaign badge   = KC_Catalog::campaign_label() for time-limited menus
  * Publish/unpublish, price and text changes show up here and in the advisor with no extra work.
@@ -29,6 +31,12 @@ final class KC_Menus {
 		'_kc_taste'   => array( 'Menykort: smaksprofil', 'F.eks. «Saftig · Krydret · Grillpreget». Valgfritt.' ),
 	);
 
+	/** Multi-line card fields. Empty = fall back to the product's short description / description. */
+	const AREA_FIELDS = array(
+		'_kc_card_text' => array( 'Menykort: salgstekst', 'Teksten på menykortet. Tom = produktets korte beskrivelse brukes.', 400 ),
+		'_kc_includes'  => array( 'Menykort: «I menyen»', 'Én rett per linje. Tom = produktbeskrivelsen brukes.', 1200 ),
+	);
+
 	public static function init() {
 		add_shortcode( 'kebabish_catering_menus', array( __CLASS__, 'render' ) );
 		add_action( 'woocommerce_product_options_general_product_data', array( __CLASS__, 'product_fields' ), 30 );
@@ -41,7 +49,7 @@ final class KC_Menus {
 
 	public static function product_fields() {
 		global $product_object;
-		echo '<div class="options_group kc-menu-card-fields"><p class="form-field"><strong>Catering – menykort</strong><br><span class="description">Vises på «Cateringmenyer» på /catering. Salgsteksten er produktets korte beskrivelse; «I menyen» er produktbeskrivelsen, én rett per linje.</span></p>';
+		echo '<div class="options_group kc-menu-card-fields"><p class="form-field"><strong>Catering – menykort</strong><br><span class="description">Vises på «Cateringmenyer» på /catering. Produktets egne beskrivelser (porsjoner, mengde per person) endres ikke av disse feltene.</span></p>';
 		foreach ( self::TEXT_FIELDS as $key => $f ) {
 			woocommerce_wp_text_input(
 				array(
@@ -51,6 +59,18 @@ final class KC_Menus {
 					'desc_tip'          => true,
 					'description'       => $f[1],
 					'custom_attributes' => array( 'maxlength' => '80' ),
+				)
+			);
+		}
+		foreach ( self::AREA_FIELDS as $key => $f ) {
+			woocommerce_wp_textarea_input(
+				array(
+					'id'          => $key,
+					'label'       => $f[0],
+					'value'       => $product_object instanceof WC_Product ? (string) $product_object->get_meta( $key ) : '',
+					'desc_tip'    => true,
+					'description' => $f[1],
+					'rows'        => 4,
 				)
 			);
 		}
@@ -67,15 +87,37 @@ final class KC_Menus {
 				$product->update_meta_data( $key, $v );
 			}
 		}
+		foreach ( self::AREA_FIELDS as $key => $f ) {
+			// phpcs:ignore WordPress.Security.NonceVerification.Missing -- WooCommerce verifies the product save nonce.
+			if ( ! isset( $_POST[ $key ] ) ) {
+				continue; // Field not on this form: leave stored value alone.
+			}
+			// phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$v = trim( mb_substr( sanitize_textarea_field( wp_unslash( $_POST[ $key ] ) ), 0, $f[2] ) );
+			if ( '' === $v ) {
+				$product->delete_meta_data( $key );
+			} else {
+				$product->update_meta_data( $key, $v );
+			}
+		}
 	}
 
 	/* ------------------------------------------------------------------ */
 	/* Render                                                              */
 	/* ------------------------------------------------------------------ */
 
-	/** Menu contents from the product description: one item per line or bullet. */
+	/** Card sales text: _kc_card_text, else the short description. */
+	public static function card_text( WC_Product $p ) {
+		$t = trim( (string) $p->get_meta( '_kc_card_text' ) );
+		return '' !== $t ? $t : trim( wp_strip_all_tags( (string) $p->get_short_description() ) );
+	}
+
+	/** «I menyen»: _kc_includes, else the product description; one item per line or bullet. */
 	public static function contents( WC_Product $p ) {
-		$raw = (string) $p->get_description();
+		$raw = trim( (string) $p->get_meta( '_kc_includes' ) );
+		if ( '' === $raw ) {
+			$raw = (string) $p->get_description();
+		}
 		$raw = preg_replace( '#<\s*(br|/p|/li|/div)[^>]*>#i', "\n", $raw );
 		$raw = html_entity_decode( wp_strip_all_tags( $raw ), ENT_QUOTES, 'UTF-8' );
 		$items = array();
@@ -132,7 +174,7 @@ final class KC_Menus {
 						$alt      = $p->get_image_id() ? (string) get_post_meta( $p->get_image_id(), '_wp_attachment_image_alt', true ) : '';
 						$eyebrow  = trim( (string) $p->get_meta( '_kc_eyebrow' ) );
 						$taste    = trim( (string) $p->get_meta( '_kc_taste' ) );
-						$sales    = trim( wp_strip_all_tags( (string) $p->get_short_description() ) );
+						$sales    = self::card_text( $p );
 						$contents = self::contents( $p );
 						$camp     = KC_Catalog::campaign_label( $p );
 						?>
