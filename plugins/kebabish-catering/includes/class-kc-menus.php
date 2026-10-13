@@ -39,8 +39,73 @@ final class KC_Menus {
 
 	public static function init() {
 		add_shortcode( 'kebabish_catering_menus', array( __CLASS__, 'render' ) );
+		add_action( 'admin_init', array( __CLASS__, 'seed_existing_menu_cards_once' ), 25 );
 		add_action( 'woocommerce_product_options_general_product_data', array( __CLASS__, 'product_fields' ), 30 );
 		add_action( 'woocommerce_admin_process_product_object', array( __CLASS__, 'save_product_fields' ), 30 );
+	}
+
+
+	/**
+	 * One-time, non-destructive marketing-data bootstrap for the 3 existing package products.
+	 * Runs on the next logged-in WooCommerce manager admin request, not on public traffic.
+	 * Never changes IDs, prices, product description, or order data. Never overwrites
+	 * any non-empty card field edited by the restaurant. Future products remain dynamic.
+	 * Mark complete ONLY if all three products were found and saved successfully.
+	 */
+	public static function seed_existing_menu_cards_once() {
+		if ( ! current_user_can( 'manage_woocommerce' ) || ! class_exists( 'WooCommerce' ) ) {
+			return;
+		}
+		$option = 'kc_menu_cards_marketing_bootstrap_20261013_v253';
+		if ( 'done' === get_option( $option ) ) {
+			return;
+		}
+		$seed = array(
+			112 => array(
+				'name' => 'Kebabish Grill',
+				'_kc_eyebrow' => 'KULLGRILL OG KARAKTER',
+				'_kc_taste' => 'Saftig · Krydret · Grillpreget',
+				'_kc_card_text' => 'Saftige grillretter med karakteristisk grillsmak, servert med klassisk tilbehør.',
+				'_kc_includes' => "Chicken tikka\nSeekh kebab\nRis\nNaan\nSalat\nRaita",
+			),
+			113 => array(
+				'name' => 'Kebabish Curry',
+				'_kc_eyebrow' => 'VARME OG KRYDDER',
+				'_kc_taste' => 'Fyldig · Aromatisk · Varmende',
+				'_kc_card_text' => 'Fyldige curryretter, aromatiske krydder og varme smaker, laget for å deles.',
+				'_kc_includes' => "Butter chicken\nChana masala\nRis\nNaan\nSalat\nRaita",
+			),
+			114 => array(
+				'name' => 'Kebabish Mix',
+				'_kc_eyebrow' => 'TO SMAKSVERDENER',
+				'_kc_taste' => 'Variert · Sosial · Komplett',
+				'_kc_card_text' => 'En kombinasjon av kullgrill og curry for dem som ønsker variasjon rundt bordet.',
+				'_kc_includes' => "Chicken tikka\nSeekh kebab\nButter chicken\nChana masala\nRis\nNaan\nSalat\nRaita",
+			),
+		);
+		// Preflight all 3 before writing any product (not a partial import).
+		$products = array();
+		foreach ( $seed as $id => $fields ) {
+			$product = wc_get_product( $id );
+			if ( ! $product instanceof WC_Product || 'package' !== KC_Catalog::role( $product ) || ! KC_Core::is_catering_product( $product ) ) {
+				return;
+			}
+			$products[ $id ] = $product;
+		}
+		foreach ( $seed as $id => $fields ) {
+			$product = $products[ $id ];
+			// Rename only the exact legacy/test names; don't override user-renamed products.
+			if ( in_array( $product->get_name(), (array) ( array( 112 => array( 'Kebabish Grill [TEST]', 'Grillpakken [TEST]' ), 113 => array( 'Kebabish Curry [TEST]', 'Currypakken [TEST]' ), 114 => array( 'Kebabish Mix [TEST]' ) )[ $id ] ), true ) ) {
+				$product->set_name( $fields['name'] );
+			}
+			foreach ( $fields as $key => $value ) {
+				if ( 'name' !== $key && '' === trim( (string) $product->get_meta( $key ) ) ) {
+					$product->update_meta_data( $key, $value );
+				}
+			}
+			$product->save();
+		}
+		update_option( $option, 'done', false );
 	}
 
 	/* ------------------------------------------------------------------ */
@@ -116,7 +181,7 @@ final class KC_Menus {
 	public static function contents( WC_Product $p ) {
 		$raw = trim( (string) $p->get_meta( '_kc_includes' ) );
 		if ( '' === $raw ) {
-			$raw = (string) $p->get_description();
+			return array(); // Never show operational portion/weight descriptions as menu contents.
 		}
 		$raw = preg_replace( '#<\s*(br|/p|/li|/div)[^>]*>#i', "\n", $raw );
 		$raw = html_entity_decode( wp_strip_all_tags( $raw ), ENT_QUOTES, 'UTF-8' );
