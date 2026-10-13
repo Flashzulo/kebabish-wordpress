@@ -186,9 +186,19 @@ final class KC_Settings {
 
 		$seed = wp_nonce_url( admin_url( 'admin-post.php?action=kc_seed_test_catalog' ), 'kc_seed_test_catalog' );
 		$del  = wp_nonce_url( admin_url( 'admin-post.php?action=kc_delete_test_catalog' ), 'kc_delete_test_catalog' );
+		$tests = KC_Catalog::test_products();
 		echo '<h2>Testkatalog</h2><p>Oppretter 3 pakker og 3 tillegg merket [TEST] i kategorien Catering. Skal fjernes før publisering.</p>';
+		echo '<p>«Fjern testkatalog» flytter bare produkter til papirkurven som både er merket «Testprodukt» og fortsatt heter noe med [TEST]. Produkter som er omdøpt til ekte navn, røres ikke.</p>';
+		if ( $tests ) {
+			echo '<p><strong>Blir flyttet til papirkurven:</strong> ' . esc_html( implode( ', ', array_map( function ( $p ) { return $p->get_name() . ' (#' . $p->get_id() . ')'; }, $tests ) ) ) . '</p>';
+		} else {
+			echo '<p><strong>Ingen testprodukter å fjerne.</strong></p>';
+		}
 		echo '<p><a class="button" href="' . esc_url( $seed ) . '">Opprett testkatalog</a> ';
-		echo '<a class="button" href="' . esc_url( $del ) . '" onclick="return confirm(\'Flytte alle [TEST]-produkter til papirkurven?\')">Fjern testkatalog</a></p>';
+		if ( $tests ) {
+			echo '<a class="button" href="' . esc_url( $del ) . '" onclick="return confirm(\'Flytte ' . count( $tests ) . ' testprodukter til papirkurven?\')">Fjern testkatalog</a>';
+		}
+		echo '</p>';
 	}
 
 	/** Server-side validation (R8): invalid values are cleared, which keeps intake closed. */

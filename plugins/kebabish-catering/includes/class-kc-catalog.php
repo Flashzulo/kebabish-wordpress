@@ -71,6 +71,17 @@ final class KC_Catalog {
 				'description'       => 'Gjelder kun tillegg. For pakker gjelder «Minimum personer» totalt for hele bestillingen (Catering-innstillinger).',
 			)
 		);
+		$is_test = $product_object instanceof WC_Product && 'yes' === (string) $product_object->get_meta( '_kc_test' );
+		echo '<input type="hidden" name="_kc_test_present" value="1">';
+		woocommerce_wp_checkbox(
+			array(
+				'id'          => '_kc_test',
+				'label'       => 'Testprodukt',
+				'value'       => $is_test ? 'yes' : 'no',
+				'cbvalue'     => 'yes',
+				'description' => 'Kan fjernes med «Fjern testkatalog» (bare så lenge navnet også inneholder [TEST]).',
+			)
+		);
 		echo '<p class="form-field"><strong>Kampanje / tidsbegrenset meny</strong><br><span class="description">La stå tomt for faste produkter. Tidspunkt er norsk tid (Europe/Oslo). Utenfor perioden vises produktet ikke og kan ikke bestilles.</span></p>';
 		global $product_object;
 		foreach ( self::CAMPAIGN_FIELDS as $key => $f ) {
@@ -99,6 +110,15 @@ final class KC_Catalog {
 		$role = array_key_exists( $role, self::ROLES ) ? $role : 'package';
 		$product->update_meta_data( '_kc_unit', 'package' === $role ? 'person' : ( in_array( $unit, self::ADDON_UNITS, true ) ? $unit : 'piece' ) );
 		$product->update_meta_data( '_kc_min_qty', max( 1, $min ) );
+		// «Testprodukt»: only a ticked box keeps the flag; unticking protects the product from «Fjern testkatalog».
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- WooCommerce verifies the product save nonce.
+		if ( isset( $_POST['_kc_test_present'] ) ) {
+			if ( isset( $_POST['_kc_test'] ) ) {
+				$product->update_meta_data( '_kc_test', 'yes' );
+			} else {
+				$product->delete_meta_data( '_kc_test' );
+			}
+		}
 		foreach ( self::CAMPAIGN_FIELDS as $key => $f ) {
 			// phpcs:ignore WordPress.Security.NonceVerification.Missing -- WooCommerce verifies the product save nonce.
 			$raw = isset( $_POST[ $key ] ) ? sanitize_text_field( wp_unslash( $_POST[ $key ] ) ) : '';
@@ -375,8 +395,14 @@ final class KC_Catalog {
 		exit;
 	}
 
-	public static function delete_test_catalog() {
-		self::guard( 'kc_delete_test_catalog' );
+	/**
+	 * Products the «Fjern testkatalog» button may trash (13.10, Saulo): BOTH still flagged _kc_test = yes
+	 * AND still named with «[TEST]». A product that has been renamed for real use (e.g. 112–114 → «Kebabish
+	 * Grill») or had «Testprodukt» unticked is protected, even if the flag was left behind.
+	 *
+	 * @return WC_Product[]
+	 */
+	public static function test_products() {
 		$ids = wc_get_products(
 			array(
 				'status'     => array( 'publish', 'draft', 'private' ),
@@ -386,11 +412,22 @@ final class KC_Catalog {
 				'meta_value' => 'yes', // phpcs:ignore WordPress.DB.SlowDBQuery
 			)
 		);
-		foreach ( $ids as $id ) {
+		$out = array();
+		foreach ( (array) $ids as $id ) {
 			$p = wc_get_product( $id );
-			if ( $p ) {
-				$p->delete( false ); // To trash, recoverable.
+			if ( $p && 'yes' === (string) $p->get_meta( '_kc_test' ) && false !== strpos( $p->get_name(), '[TEST]' ) ) {
+				$out[] = $p;
 			}
+		}
+		return $out;
+	}
+
+	public static function delete_test_catalog() {
+		self::guard( 'kc_delete_test_catalog' );
+		$ids = array();
+		foreach ( self::test_products() as $p ) {
+			$ids[] = $p->get_id();
+			$p->delete( false ); // To trash, recoverable.
 		}
 		wp_safe_redirect( admin_url( 'admin.php?page=wc-settings&tab=kebabish_catering&kc_msg=deleted&kc_n=' . count( $ids ) ) );
 		exit;
