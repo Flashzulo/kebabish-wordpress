@@ -36,6 +36,7 @@ final class KC_Catalog {
 	/* ------------------------------------------------------------------ */
 
 	public static function product_fields() {
+		global $product_object; // Must come first: read below for «Testprodukt» and campaign values (QA V2.5.1).
 		echo '<div class="options_group kc-product-fields">';
 		echo '<p class="form-field"><strong>Catering</strong><br><span class="description">Gjelder kun produkter i kategorien «Catering».</span></p>';
 		woocommerce_wp_select(
@@ -83,7 +84,6 @@ final class KC_Catalog {
 			)
 		);
 		echo '<p class="form-field"><strong>Kampanje / tidsbegrenset meny</strong><br><span class="description">La stå tomt for faste produkter. Tidspunkt er norsk tid (Europe/Oslo). Utenfor perioden vises produktet ikke og kan ikke bestilles.</span></p>';
-		global $product_object;
 		foreach ( self::CAMPAIGN_FIELDS as $key => $f ) {
 			$cur = $product_object instanceof WC_Product ? (string) $product_object->get_meta( $key ) : '';
 			woocommerce_wp_text_input(
