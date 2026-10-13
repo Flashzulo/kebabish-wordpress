@@ -189,6 +189,8 @@ final class KC_Advisor {
 			'tags'  => self::product_tags( $p ),
 			'rule'  => self::product_rule( $p ),
 			'group' => '' !== $group ? mb_substr( $group, 0, 40 ) : 'Annet',
+			'camp'  => KC_Catalog::campaign_label( $p ),
+			'pick'  => KC_Catalog::pickup_window( $p ),
 		);
 	}
 

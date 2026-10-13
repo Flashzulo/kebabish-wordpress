@@ -1,0 +1,30 @@
+/* Kebabish Catering – Cateringmenyer cards from WooCommerce (issue #4).
+ * Builds on the theme's .kc-package-card styles (kebabish-catering.css); only additions here. */
+.kcm__grid { align-items: stretch; }
+.kcm__card .kc-package-card__media { position: relative; }
+.kcm__media--empty { background: var(--kc-muted, #DDD3C2); }
+.kcm__badge {
+	position: absolute;
+	left: 12px;
+	bottom: 12px;
+	max-width: calc(100% - 24px);
+	padding: 5px 10px;
+	border-radius: 4px;
+	background: var(--kc-rust, #B83A2E);
+	color: #fff;
+	font-size: .7rem;
+	font-weight: 800;
+	letter-spacing: .04em;
+}
+.kcm__contents {
+	margin: 0 0 16px !important;
+	padding: 0 0 0 18px !important;
+	color: var(--kc-soft, #64645d);
+	font-size: .9rem;
+	line-height: 1.5;
+}
+.kcm__contents li { margin: 0 0 3px; }
+.kcm__price { margin: auto 0 14px !important; color: var(--kc-text, #22231f) !important; }
+.kcm__price strong { font-size: 1.35rem; }
+.kcm__price span { color: var(--kc-soft, #64645d); font-size: .85rem; }
+.kcm__cta svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; }

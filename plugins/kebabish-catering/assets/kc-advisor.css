@@ -467,3 +467,7 @@ html.kca-lock { overflow: hidden; }
 	.kca[open] { animation: kca-in .18s ease-out; }
 	@keyframes kca-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
 }
+
+/* Issue #4: campaign label on packages and add-ons */
+.kca-camp { display: inline-block; margin: 2px 0 4px !important; padding: 2px 8px; border-radius: 4px; background: rgba(198, 154, 80, .18); color: #7a5a1f; font-size: .74rem !important; font-weight: 800; letter-spacing: .03em; }
+.kca-addon__text .kca-camp { display: table; }

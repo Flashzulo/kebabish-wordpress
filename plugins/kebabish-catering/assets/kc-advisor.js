@@ -720,6 +720,7 @@
 				p.img ? h('img', { className: 'kca-pkg__img', src: p.img, alt: '', loading: 'lazy' }) : null,
 				h('div', { className: 'kca-pkg__body' }, [
 					h('h3', { text: p.name }),
+					p.camp ? h('p', { className: 'kca-camp', text: p.camp }) : null,
 					h('p', { className: 'kca-price', text: priceLine(p) }),
 					p.desc ? h('p', { className: 'kca-desc', text: p.desc }) : null,
 					h('div', { className: 'kca-pkg__row' }, [
@@ -761,6 +762,7 @@
 		return h('div', { className: 'kca-addon' + (S.qty[p.id] ? ' is-selected' : '') }, [
 			h('div', { className: 'kca-addon__text' }, [
 				h('span', { className: 'kca-addon__name', text: p.name }),
+				p.camp ? h('span', { className: 'kca-camp', text: p.camp }) : null,
 				h('span', { className: 'kca-price', text: priceLine(p) + (p.min > 1 ? ' · min. ' + p.min : '') })
 			]),
 			stepper(p, ctx)
@@ -965,6 +967,21 @@
 			}
 		}
 		chk('kc_date', function (v) { return /^\d{4}-\d{2}-\d{2}$/.test(v); }, 'Velg dato for henting.');
+		// Campaign menus: pickup date inside every selected product's window (server checks again).
+		var dateField = form.querySelector('[name="kc_date"]');
+		var dv = dateField ? dateField.value.trim() : '';
+		if (/^\d{4}-\d{2}-\d{2}$/.test(dv)) {
+			Object.keys(S.qty).some(function (id) {
+				var p = BY_ID[id];
+				var w = p && p.pick ? p.pick : ['', ''];
+				if ((w[0] && dv < w[0]) || (w[1] && dv > w[1])) {
+					dateField.setAttribute('aria-invalid', 'true');
+					bad.push({ f: dateField, msg: p.name + ' kan ikke hentes denne datoen.' + (p.camp ? ' ' + p.camp + '.' : '') });
+					return true;
+				}
+				return false;
+			});
+		}
 		chk('kc_time', function (v) { return v !== ''; }, 'Velg hentetid.');
 		chk('kc_name', function (v) { return v.length >= 2; }, 'Skriv inn navn.');
 		chk('kc_phone', function (v) { var d = v.replace(/\D+/g, ''); return d.length >= 8 && d.length <= 15; }, 'Skriv inn et gyldig telefonnummer.');
