@@ -40,10 +40,10 @@
           <h1 id="kc-title">Fredagsmat.<br>Møtemat.<br>Mat til gjengen.</h1>
           <p class="kc-hero__lead">Autentiske smaker fra Kebabish — enkelt å dele. For kontor, møter og private sammenkomster.</p>
           <div class="kc-actions">
-            <a class="kc-button kc-button--red" href="#foresporsel">Be om catering
+            <a class="kc-button kc-button--red" href="#anledninger">Start cateringbestilling
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
             </a>
-            <a class="kc-button kc-button--line" href="/meny">Se meny
+            <a class="kc-button kc-button--line" href="#cateringmenyer">Se cateringmenyer
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
             </a>
           </div>
@@ -51,7 +51,42 @@
       </div>
     </section>
 
-    <section class="kc-section kc-occasions" aria-labelledby="kc-occasions-title">
+    <section class="kc-section kc-steps" aria-labelledby="kc-steps-title">
+      <div class="ko-shell">
+        <div class="kc-section-head">
+          <p class="kc-section-label"><span></span> Slik fungerer det <span></span></p>
+          <h2 id="kc-steps-title">Tre enkle steg</h2>
+        </div>
+
+        <div class="kc-step-grid">
+          <article class="kc-step">
+            <span class="kc-step__number">1</span>
+            <span class="kc-step__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M5 18h14M7 18v-7a5 5 0 0 1 10 0v7M10 6V4h4v2"/></svg>
+            </span>
+            <div><h3>Velg anledning</h3><p>Fortell oss om maten er til kontoret, et møte eller en privat feiring.</p></div>
+          </article>
+
+          <article class="kc-step">
+            <span class="kc-step__number">2</span>
+            <span class="kc-step__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M2.5 20c.4-4.6 2.2-7 5.5-7s5.1 2.4 5.5 7M10.5 20c.4-3.8 2.2-6 5.5-6s5.1 2.2 5.5 6"/></svg>
+            </span>
+            <div><h3>Sett sammen menyen</h3><p>Velg pakker, antall personer og eventuelle tilleggsretter.</p></div>
+          </article>
+
+          <article class="kc-step">
+            <span class="kc-step__number">3</span>
+            <span class="kc-step__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M5 5h14v15H5zM8 3v4M16 3v4M5 9h14M9 14l2 2 4-4"/></svg>
+            </span>
+            <div><h3>Send bestillingen</h3><p>Se over valgene og send. Kebabish bekrefter før betaling.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="kc-section kc-occasions" id="anledninger" aria-labelledby="kc-occasions-title">
       <div class="ko-shell">
         <div class="kc-section-head">
           <p class="kc-section-label"><span></span> Passer for flere anledninger <span></span></p>
@@ -108,38 +143,69 @@
       </div>
     </section>
 
-    <section class="kc-section kc-steps" aria-labelledby="kc-steps-title">
+    <!-- DBN cateringmenyer: redaksjonell presentasjon; WooCommerce og bestillingsveilederen beholdes uendret. -->
+
+    <!-- Localized CSS: do not alter plugin styles, V2 order data or site-wide theme. -->
+    <style id="dbn-catering-menu-showcase-style">
+      .kc-page .kca-gallery{display:none!important}
+      .kc-menu-showcase{background:#f6f0e4;color:#22231f;padding:80px 0 92px}
+      .kc-menu-showcase__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:36px}
+      .kc-menu-showcase__card{background:#fffdf8;border:1px solid rgba(16,17,15,.10);border-radius:18px;overflow:hidden;box-shadow:0 12px 36px rgba(16,17,15,.09);display:flex;flex-direction:column}
+      .kc-menu-showcase__photo{aspect-ratio:4/3;overflow:hidden;background:#171814}
+      .kc-menu-showcase__photo img{width:100%;height:100%;object-fit:cover;display:block}
+      .kc-menu-showcase__body{padding:27px 24px 30px;display:flex;flex-direction:column;flex:1}
+      .kc-menu-showcase__eyebrow{font-size:11px!important;font-weight:800;letter-spacing:.16em;color:#a05231;margin:0 0 10px!important}
+      .kc-menu-showcase__body h3{font-size:clamp(25px,2.3vw,33px)!important;line-height:1.16;margin:0 0 9px!important}
+      .kc-menu-showcase__taste{color:#a05231;font-weight:750;font-size:13px!important;letter-spacing:.02em;margin:0 0 19px!important}
+      .kc-menu-showcase__description{font-size:15px!important;line-height:1.68;color:#30312c;margin:0 0 18px!important}
+      .kc-menu-showcase__includes{margin:auto 0 0!important;padding-top:15px;border-top:1px solid #e7ded0;color:#55584e;font-size:13px!important;line-height:1.65}
+      .kc-menu-showcase__includes strong{color:#262923}
+      .kc-menu-showcase__foot{text-align:center;color:#66685f;font-size:13px!important;margin:25px 0 18px!important}
+      .kc-menu-showcase__cta{display:flex!important;align-items:center;justify-content:center;gap:10px;width:max-content;max-width:100%;margin:0 auto;text-align:center}
+      @media(max-width:960px){.kc-menu-showcase__grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+      @media(max-width:650px){.kc-menu-showcase{padding:55px 0 66px}.kc-menu-showcase__grid{grid-template-columns:1fr;gap:20px}.kc-menu-showcase__photo{aspect-ratio:16/10}.kc-menu-showcase__body{padding:24px 21px 27px}.kc-menu-showcase__cta{width:100%}}
+    </style>
+    <section class="kc-menu-showcase kc-section" id="cateringmenyer" aria-labelledby="kc-menu-showcase-title">
       <div class="ko-shell">
         <div class="kc-section-head">
-          <p class="kc-section-label"><span></span> Slik fungerer det <span></span></p>
-          <h2 id="kc-steps-title">Tre enkle steg</h2>
+          <p class="kc-section-label"><span></span> Våre cateringmenyer <span></span></p>
+          <h2 id="kc-menu-showcase-title">Tre måter å dele smaken på</h2>
+          <p>Fra saftig kullgrill til fyldige curryretter. Velg smaksopplevelsen som passer selskapet – og sett sammen bestillingen i vår cateringveileder.</p>
         </div>
-
-        <div class="kc-step-grid">
-          <article class="kc-step">
-            <span class="kc-step__number">1</span>
-            <span class="kc-step__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M5 18h14M7 18v-7a5 5 0 0 1 10 0v7M10 6V4h4v2"/></svg>
-            </span>
-            <div><h3>Velg</h3><p>Velg en pakke eller sett sammen det som passer dere.</p></div>
+        <div class="kc-menu-showcase__grid">
+          <article class="kc-menu-showcase__card">
+            <div class="kc-menu-showcase__photo"><img src="/wp-content/uploads/2026/10/Kebabish-catering-–-midlertidig-konseptbilde-3.jpg" alt="Konseptbilde av grillretter med naan" loading="lazy" decoding="async"></div>
+            <div class="kc-menu-showcase__body">
+              <p class="kc-menu-showcase__eyebrow">KULLGRILL OG KARAKTER</p>
+              <h3>Kebabish Grill</h3>
+              <p class="kc-menu-showcase__taste">Saftig · Krydret · Grillpreget</p>
+              <p class="kc-menu-showcase__description">Duften av grill og smaker med tydelig karakter. Vår grillmeny samler chicken tikka og seekh kebab i et måltid laget for å deles.</p>
+              <p class="kc-menu-showcase__includes"><strong>I menyen:</strong> Chicken tikka · Seekh kebab · Ris · Naan · Salat · Raita</p>
+            </div>
           </article>
-
-          <article class="kc-step">
-            <span class="kc-step__number">2</span>
-            <span class="kc-step__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M2.5 20c.4-4.6 2.2-7 5.5-7s5.1 2.4 5.5 7M10.5 20c.4-3.8 2.2-6 5.5-6s5.1 2.2 5.5 6"/></svg>
-            </span>
-            <div><h3>Oppgi antall</h3><p>Fortell oss hvor mange dere er og når dere ønsker maten.</p></div>
+          <article class="kc-menu-showcase__card">
+            <div class="kc-menu-showcase__photo"><img src="/wp-content/uploads/2026/10/Kebabish-catering-–-midlertidig-konseptbilde-1.jpg" alt="Konseptbilde av curry, ris og naan" loading="lazy" decoding="async"></div>
+            <div class="kc-menu-showcase__body">
+              <p class="kc-menu-showcase__eyebrow">VARME OG KRYDDER</p>
+              <h3>Kebabish Curry</h3>
+              <p class="kc-menu-showcase__taste">Fyldig · Aromatisk · Varmende</p>
+              <p class="kc-menu-showcase__description">La gjestene samles rundt rike curryer og balanserte krydder. Butter chicken møter chana masala – to forskjellige smaker, én helhetlig servering.</p>
+              <p class="kc-menu-showcase__includes"><strong>I menyen:</strong> Butter chicken · Chana masala · Ris · Naan · Salat · Raita</p>
+            </div>
           </article>
-
-          <article class="kc-step">
-            <span class="kc-step__number">3</span>
-            <span class="kc-step__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M5 5h14v15H5zM8 3v4M16 3v4M5 9h14M9 14l2 2 4-4"/></svg>
-            </span>
-            <div><h3>Hent</h3><p>Vi bekrefter detaljene før bestillingen. Levering legges til når tilbudet er operativt verifisert.</p></div>
+          <article class="kc-menu-showcase__card">
+            <div class="kc-menu-showcase__photo"><img src="/wp-content/uploads/2026/10/Kebabish-catering-–-midlertidig-konseptbilde-2.jpg" alt="Konseptbilde av grill og curry til deling" loading="lazy" decoding="async"></div>
+            <div class="kc-menu-showcase__body">
+              <p class="kc-menu-showcase__eyebrow">TO SMAKSVERDENER</p>
+              <h3>Kebabish Mix</h3>
+              <p class="kc-menu-showcase__taste">Variert · Sosial · Komplett</p>
+              <p class="kc-menu-showcase__description">For selskapet som vil oppleve litt av begge deler: karakteren fra grillen og fylden fra currygrytene, med klassisk tilbehør til hele bordet.</p>
+              <p class="kc-menu-showcase__includes"><strong>I menyen:</strong> Chicken tikka · Seekh kebab · Butter chicken · Chana masala · Ris · Naan · Salat · Raita</p>
+            </div>
           </article>
         </div>
+        <p class="kc-menu-showcase__foot">Velg cateringmeny i bestillingsveilederen. Kebabish bekrefter innhold og pris før betaling.</p>
+        <a class="kc-button kc-button--red kc-menu-showcase__cta" href="#anledninger">Velg anledning og start bestillingen <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
       </div>
     </section>
 
@@ -196,7 +262,7 @@
 
   <nav class="kc-mobile-bar" aria-label="Hurtigmeny">
     <a href="/meny">Se meny</a>
-    <a class="kc-mobile-bar__primary" href="#pakker">Bestill catering</a>
+    <a class="kc-mobile-bar__primary" href="#anledninger">Start bestilling</a>
   </nav>
 </div>
 <!-- /wp:html -->
