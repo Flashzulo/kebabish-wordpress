@@ -1,14 +1,1454 @@
-/* Kebabish Original Oslo — Refined Heritage draft */
-@font-face{font-family:Literata;src:url('../fonts/literata/Literata72pt-Regular.woff2') format('woff2');font-style:normal;font-weight:400;font-display:swap}
-@font-face{font-family:Literata;src:url('../fonts/literata/Literata72pt-RegularItalic.woff2') format('woff2');font-style:italic;font-weight:400;font-display:swap}
-body .wp-site-blocks{padding:0}
-:root{--ko-forest:#151714;--ko-forest-deep:#0b0d0b;--ko-forest-soft:#073326;--ko-ivory:#f4eedf;--ko-ivory-light:#fbf8ef;--ko-charcoal:#151714;--ko-gold:#bd9650;--ko-gold-light:#dcc17f;--ko-red:#c51922;--ko-line:rgba(189,150,80,.42);--ko-dark-line:rgba(7,51,38,.18)}
-html{scroll-behavior:smooth}body{margin:0;background:var(--ko-ivory);color:var(--ko-charcoal)}body.admin-bar .ko-header{top:32px}.ko-site{min-height:100vh;overflow:hidden;background:var(--ko-ivory);font-family:Arial,sans-serif}.ko-site,.ko-site *{box-sizing:border-box}.ko-site h1,.ko-site h2,.ko-site h3,.ko-site p{margin-top:0}.ko-site h1,.ko-site h2,.ko-site h3,.ko-brand strong{font-family:Literata,Georgia,serif}.ko-shell{width:min(100%,1460px);margin-inline:auto;padding-inline:clamp(22px,5vw,76px)}.ko-section-no{margin:0 0 30px;color:var(--ko-forest-soft);font-size:.67rem;font-weight:750;letter-spacing:.23em;text-transform:uppercase}.ko-section-no--light{color:var(--ko-gold-light)}
-.ko-header{position:absolute;z-index:40;top:0;left:0;right:0;color:var(--ko-ivory)}.ko-header__inner{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:30px;padding-top:18px;padding-bottom:16px;border-bottom:1px solid rgba(244,238,223,.25)}.ko-brand{display:inline-flex;align-items:center;gap:12px;color:inherit!important;text-decoration:none!important}.ko-brand img{width:68px;height:68px;object-fit:contain}.ko-brand span{display:flex;flex-direction:column}.ko-brand strong{font-size:1.16rem;line-height:1}.ko-brand small{margin-top:5px;font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;opacity:.72}.ko-nav{display:flex;justify-content:center;gap:clamp(18px,2.7vw,40px)}.ko-nav a,.ko-header__cta{color:inherit!important;text-decoration:none!important;font-size:.66rem;font-weight:750;letter-spacing:.16em;text-transform:uppercase}.ko-header__cta{border:1px solid var(--ko-gold);padding:12px 19px;border-radius:999px}
-.ko-hero{position:relative;min-height:100svh;display:flex;align-items:center;background:var(--ko-forest-deep);color:var(--ko-ivory);isolation:isolate}.ko-hero:before{content:"";position:absolute;inset:0;z-index:-3;background:radial-gradient(circle at 80% 34%,rgba(7,51,38,.34),transparent 34%),linear-gradient(125deg,#0b0d0b,#151714 62%,#080a08)}.ko-hero__pattern{position:absolute;z-index:-1;inset:0;opacity:.18;background-image:linear-gradient(rgba(244,238,223,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(244,238,223,.08) 1px,transparent 1px);background-size:40px 40px}.ko-hero__grid{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:clamp(45px,7vw,110px);align-items:center;padding-top:142px;padding-bottom:100px}.ko-eyebrow{display:flex;align-items:center;gap:13px;margin-bottom:30px!important;color:var(--ko-gold-light);font-size:.68rem;font-weight:750;letter-spacing:.2em;text-transform:uppercase}.ko-eyebrow span{width:46px;height:1px;background:var(--ko-gold)}.ko-hero h1{margin:0 0 31px;font-size:clamp(4.2rem,7.8vw,8.4rem)!important;line-height:.82!important;font-weight:500;letter-spacing:-.07em;color:var(--ko-ivory)!important}.ko-hero h1 em,.ko-site h2 em{font-style:italic;font-weight:400;color:var(--ko-gold-light)}.ko-hero__lead{max-width:610px;margin:0!important;color:rgba(244,238,223,.76);font-size:clamp(1rem,1.35vw,1.22rem)!important;line-height:1.72}.ko-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}.ko-button{display:inline-flex;min-height:52px;align-items:center;justify-content:center;padding:0 25px;border-radius:999px;color:inherit!important;text-decoration:none!important;font-size:.67rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.ko-button--gold{background:var(--ko-red);color:var(--ko-ivory)!important}.ko-button--line{border:1px solid rgba(244,238,223,.42);color:var(--ko-ivory)!important}.ko-button--forest{background:var(--ko-forest);color:var(--ko-ivory)!important}.ko-facts{display:flex;flex-wrap:wrap;gap:22px;margin-top:45px;color:rgba(244,238,223,.58);font-size:.62rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase}.ko-facts span:before{content:"✦";margin-right:8px;color:var(--ko-gold)}.ko-hero-media{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:220px 220px 24px 24px;border:1px solid rgba(189,150,80,.45);box-shadow:0 40px 90px rgba(0,0,0,.4)}.ko-hero-media>img{display:block;width:100%;height:100%;object-fit:cover}.ko-hero-media:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(11,13,11,.65),transparent 48%)}.ko-hero-media__seal{position:absolute;z-index:3;right:24px;bottom:24px;width:120px}.ko-hero-media__seal img{width:100%;height:auto}.ko-hero-media__caption{position:absolute;z-index:4;left:25px;bottom:25px;margin:0!important;color:var(--ko-ivory);font-size:.55rem!important;font-weight:800;letter-spacing:.18em}.ko-hero__rail{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;gap:20px;height:48px;border-top:1px solid rgba(244,238,223,.14);color:rgba(244,238,223,.5);font-size:.56rem;font-weight:700;letter-spacing:.25em}.ko-hero__rail i{width:35px;height:1px;background:var(--ko-gold)}
-.ko-intro{padding:clamp(90px,10vw,155px) 0}.ko-intro__grid{display:grid;grid-template-columns:.86fr 1.14fr;gap:clamp(50px,8vw,130px)}.ko-intro h2,.ko-catering h2,.ko-visit h2{margin:0;font-size:clamp(3.1rem,6.5vw,7rem)!important;line-height:.9!important;font-weight:450;letter-spacing:-.06em}.ko-intro__large{font-family:Literata,Georgia,serif;font-size:clamp(1.55rem,2.8vw,2.7rem)!important;line-height:1.2;color:#28483e}.ko-intro__copy>p:last-child{color:#626a65;line-height:1.8}.ko-values{display:grid;grid-template-columns:repeat(4,1fr);margin-top:80px;border-block:1px solid var(--ko-dark-line)}.ko-values article{min-height:270px;padding:28px;border-right:1px solid var(--ko-dark-line);display:flex;flex-direction:column}.ko-values article:last-child{border-right:0}.ko-values span{color:var(--ko-red);font-size:.63rem;font-weight:800}.ko-values h3{margin:auto 0 12px;font-size:1.85rem}.ko-values p{margin:0!important;color:#686e69;font-size:.88rem!important;line-height:1.65}
-.ko-film{padding:clamp(120px,11vw,180px) 0;background:var(--ko-forest-deep);color:var(--ko-ivory)}.ko-film__grid{display:grid;grid-template-columns:.72fr 1.28fr;gap:clamp(48px,7vw,105px);align-items:center}.ko-film__copy h2{font-size:clamp(3.4rem,6vw,6.6rem)!important;line-height:.88!important;color:var(--ko-ivory)!important}.ko-film__copy>p:not(.ko-section-no){color:rgba(244,238,223,.7);line-height:1.78}.ko-film__modes{display:flex;flex-wrap:wrap;gap:9px;margin-top:34px}.ko-film__modes span{padding:9px 12px;border:1px solid var(--ko-line);color:var(--ko-gold-light);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase}.ko-film__media{position:relative;margin:0;aspect-ratio:16/10;border:1px solid rgba(189,150,80,.6)}.ko-film__media>img{width:100%;height:100%;object-fit:cover}.ko-film__play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;color:white}.ko-film__play>span{display:grid;place-items:center;width:80px;height:80px;border:1px solid var(--ko-gold-light);border-radius:50%;background:rgba(11,13,11,.65)}.ko-film__media figcaption{position:absolute;left:22px;bottom:20px;color:white;font-size:.58rem}.ko-film__edge{position:absolute;right:-25px;top:28px;color:var(--ko-gold-light);font-size:.5rem!important;writing-mode:vertical-rl}
-.ko-menu{position:relative;padding:clamp(90px,10vw,150px) 0;background:var(--ko-forest);color:var(--ko-ivory)}.ko-menu__ghost{position:absolute;right:0;top:-.25em;font-family:Literata,serif;font-size:25vw;color:rgba(244,238,223,.025)}.ko-menu__head{position:relative;display:grid;grid-template-columns:1.2fr .8fr;gap:50px;align-items:end}.ko-menu__head h2{margin:0;font-size:clamp(3.2rem,6.5vw,7rem)!important;line-height:.9!important;color:var(--ko-ivory)!important}.ko-menu__head>p{color:rgba(244,238,223,.65);line-height:1.75}.ko-menu__cards{position:relative;display:grid;grid-template-columns:repeat(3,1fr);margin-top:65px}.ko-menu-card{min-height:430px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid rgba(244,238,223,.13);background:#1c1e1b}.ko-menu-card--feature{background:var(--ko-ivory);color:var(--ko-forest)}.ko-menu-card--red{background:#99151b}.ko-menu-card__meta{display:flex;justify-content:space-between;font-size:.6rem}.ko-menu-card__symbol{font-size:2rem!important;color:var(--ko-gold)}.ko-menu-card h3{font-size:2rem}.ko-menu-card a{color:inherit!important}.ko-menu-card__note{font-size:.55rem;letter-spacing:.14em}.ko-menu__cta{display:flex;justify-content:center;margin-top:48px}
-.ko-statement{padding:70px 0;background:var(--ko-red);color:var(--ko-ivory);text-align:center}.ko-statement__inner h2{margin:8px 0!important;font-size:clamp(2.5rem,5vw,5.4rem)!important;color:var(--ko-ivory)!important}.ko-statement__inner>p,.ko-statement__inner>span{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase}.ko-catering{padding:clamp(90px,10vw,150px) 0}.ko-catering__grid{display:grid;grid-template-columns:1fr .8fr;gap:clamp(50px,8vw,120px);align-items:center}.ko-catering__lead{color:#626a65;line-height:1.8}.ko-order-card{padding:40px;border:1px solid var(--ko-dark-line);background:var(--ko-ivory-light)}.ko-order-card__top{display:flex;justify-content:space-between;color:var(--ko-red);font-size:.6rem}.ko-order-card ol{list-style:none;padding:0}.ko-order-card li{display:flex;gap:20px;padding:18px 0;border-bottom:1px solid var(--ko-dark-line)}.ko-visit{padding:clamp(90px,10vw,150px) 0;background:var(--ko-forest-deep);color:var(--ko-ivory)}.ko-visit h2{color:var(--ko-ivory)!important}.ko-visit__grid{display:grid;grid-template-columns:1fr 1fr;gap:60px}.ko-visit__details{display:grid;grid-template-columns:repeat(3,1fr);gap:25px}.ko-visit__details small{color:var(--ko-gold-light);font-size:.55rem}.ko-visit__details p{color:rgba(244,238,223,.72);line-height:1.6}.ko-footer{padding:32px 0;background:#070807;color:var(--ko-ivory)}.ko-footer__inner{display:flex;align-items:center;justify-content:space-between;gap:25px}.ko-footer p{margin:0!important;font-size:.75rem;opacity:.65}.ko-footer a{color:inherit!important}.ko-mobile-bar{display:none}
-@media(max-width:900px){body.admin-bar .ko-header{top:46px}.ko-nav,.ko-header__cta{display:none}.ko-header__inner{grid-template-columns:1fr}.ko-brand img{width:56px;height:56px}.ko-hero__grid,.ko-intro__grid,.ko-film__grid,.ko-menu__head,.ko-catering__grid,.ko-visit__grid{grid-template-columns:1fr}.ko-hero__grid{padding-top:120px;padding-bottom:90px;gap:42px}.ko-hero h1{font-size:clamp(3.8rem,16vw,6.2rem)!important}.ko-hero-media{aspect-ratio:4/3;border-radius:120px 120px 18px 18px}.ko-hero__rail{gap:10px;font-size:.48rem;letter-spacing:.12em}.ko-hero__rail i{width:15px}.ko-values{grid-template-columns:1fr 1fr}.ko-values article:nth-child(2){border-right:0}.ko-menu__cards{grid-template-columns:1fr}.ko-menu-card{min-height:330px}.ko-visit__details{grid-template-columns:1fr}.ko-footer__inner{flex-direction:column;align-items:flex-start;padding-bottom:70px}.ko-mobile-bar{position:fixed;z-index:60;left:10px;right:10px;bottom:10px;display:grid;grid-template-columns:.7fr .7fr 1.2fr;background:#0b0d0b;border:1px solid var(--ko-line)}.ko-mobile-bar a{display:grid;place-items:center;min-height:52px;color:var(--ko-ivory)!important;text-decoration:none!important;font-size:.58rem;font-weight:800;text-transform:uppercase}.ko-mobile-bar__primary{background:var(--ko-red)}}
-@media(max-width:520px){.ko-shell{padding-inline:20px}.ko-hero h1{font-size:3.55rem!important}.ko-hero-media__seal{width:86px}.ko-values{grid-template-columns:1fr}.ko-values article{border-right:0}.ko-film__media{aspect-ratio:4/3}.ko-film__edge{display:none}.ko-visit figure{aspect-ratio:4/3!important}}
+/* KEBABISH — R003.1 / Wireframe B fidelity correction */
+@font-face{font-family:Literata;src:url('../fonts/Literata-VariableFont_opsz,wght.ttf') format('truetype');font-weight:200 900;font-display:swap}
+@font-face{font-family:Manrope;src:url('../fonts/Manrope-VariableFont_wght.ttf') format('truetype');font-weight:200 800;font-display:swap}
+:root{--ko-charcoal:#10110F;--ko-cream:#F6F0E4;--ko-gold:#C69A50;--ko-red:#B83A2E;--ko-muted:#DDD3C2;--ko-dark:#1A1A1A;--ko-white:#FFFFFF;--ko-max:1460px}
+html{scroll-behavior:smooth}body{margin:0}.ko-wb,.ko-wb *{box-sizing:border-box}.ko-wb{background:var(--ko-cream);color:var(--ko-dark);font-family:Manrope,Arial,sans-serif}.ko-shell{width:min(var(--ko-max),calc(100% - 80px));margin:auto}.ko-wb h1,.ko-wb h2,.ko-wb h3,.ko-wb h4,.ko-wb p{margin-top:0}.ko-wb h1,.ko-wb h2,.ko-wb h3{font-family:Literata,Georgia,serif}.ko-wb svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.ko-btn{min-height:62px;padding:0 28px;display:inline-flex;gap:12px;align-items:center;justify-content:center;text-decoration:none!important;font-size:14px;font-weight:800;letter-spacing:.02em;text-transform:uppercase}.ko-btn svg{width:20px;height:20px}.ko-btn--red{background:var(--ko-red);color:#fff!important}.ko-btn--outline{border:2px solid var(--ko-gold);color:#fff!important}.ko-btn--dark-outline{border:1px solid var(--ko-dark);color:var(--ko-dark)!important}
+
+.ko-header{height:142px;background:var(--ko-dark);color:#fff}
+.ko-header__inner{
+  height:100%;
+  display:grid;
+  grid-template-columns:236px minmax(0,1fr) 184px;
+  align-items:center;
+  gap:34px;
+  padding-inline:18px;
+}
+.ko-logo{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  min-width:0;
+}
+.ko-logo img{
+  display:block;
+  width:158px;
+  height:158px;
+  object-fit:contain;
+}
+.ko-nav{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:36px;
+  min-width:0;
+}
+.ko-nav a{
+  color:#fff!important;
+  text-decoration:none;
+  font-size:15px;
+  line-height:1;
+  white-space:nowrap;
+}
+.ko-nav a:first-child{
+  border-bottom:2px solid var(--ko-gold);
+  padding-bottom:9px;
+}
+.ko-header__cta{
+  justify-self:end;
+  min-width:168px;
+}
+.ko-menu{display:none;background:none;border:0;padding:8px}
+.ko-menu span{display:block;width:26px;height:2px;background:#fff;margin:5px}
+
+.ko-hero{
+  height:720px;
+  position:relative;
+  background:#090909;
+  color:#fff;
+  overflow:hidden;
+}
+.ko-hero__bg{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,rgba(7,7,7,.98) 0%,rgba(7,7,7,.92) 31%,rgba(7,7,7,.58) 49%,rgba(7,7,7,.10) 70%),
+    url('https://kebabishoslo.no/wp-content/uploads/2026/09/Kebabish-Josper-grill-–-bearbeidet-hero.png') 72% center/cover no-repeat;
+}
+.ko-hero__inner{
+  position:relative;
+  z-index:2;
+  height:570px;
+  display:grid;
+  grid-template-columns:minmax(0,640px) minmax(260px,1fr);
+  align-items:center;
+  gap:52px;
+}
+.ko-hero__copy{
+  width:auto;
+  max-width:640px;
+}
+.ko-eyebrow{
+  color:var(--ko-gold);
+  font-weight:800;
+  font-size:17px;
+  letter-spacing:.035em;
+  text-transform:uppercase;
+  margin-bottom:22px;
+}
+.ko-hero h1{
+  max-width:620px;
+  font-size:84px!important;
+  line-height:.98!important;
+  letter-spacing:-.04em;
+  color:#fff!important;
+  margin:0 0 26px;
+}
+.ko-hero h1 span{color:var(--ko-gold)}
+.ko-lead{
+  font-size:20px!important;
+  line-height:1.55;
+  max-width:590px;
+  margin-bottom:30px!important;
+}
+.ko-actions{
+  display:flex;
+  gap:18px;
+  align-items:center;
+}
+.ko-hero__script{
+  justify-self:end;
+  align-self:center;
+  margin:0 34px 0 0;
+  color:var(--ko-gold);
+  font-family:Literata,Georgia,serif;
+  font-style:italic;
+  font-size:46px;
+  line-height:1.05;
+  transform:rotate(-8deg);
+  text-align:center;
+}
+.ko-usps{
+  position:relative;
+  z-index:3;
+  height:150px;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  align-items:center;
+  gap:0;
+  border-top:1px solid rgba(255,255,255,.09);
+  border-bottom:1px solid rgba(255,255,255,.09);
+}
+.ko-usp{
+  min-height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  padding:0 24px;
+  font-size:14px;
+  line-height:1.25;
+  font-weight:700;
+  letter-spacing:.02em;
+  text-transform:uppercase;
+  text-align:left;
+  border-right:1px solid rgba(255,255,255,.08);
+}
+.ko-usp:last-child{border-right:0}
+.ko-usp svg{
+  width:42px;
+  height:42px;
+  color:var(--ko-gold);
+  flex:none;
+}
+
+.ko-favourites{background:var(--ko-cream);padding:48px 0 55px}.ko-section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:28px}.ko-section-head h2{font-size:74px!important;line-height:1;margin-bottom:7px}.ko-section-head p{font-size:17px;margin:0!important;color:#5c574e}.ko-section-head>a{color:var(--ko-red)!important;font-size:14px;font-weight:800;text-transform:uppercase;text-decoration:underline;text-underline-offset:5px}.ko-products{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.ko-products article{background:#fff;border:1px solid #e4dbcc}.ko-product-img{height:220px;background:#251611 center/cover no-repeat}.ko-food-1{background-image:url('https://kebabishoslo.no/wp-content/uploads/2026/09/Naan-over-flamme-—-Kebabish-Original-Oslo.png')}.ko-food-2{background-image:linear-gradient(135deg,#5c2b1d,#12100f)}.ko-food-3{background-image:linear-gradient(135deg,#8a4a25,#17100b)}.ko-food-4{background-image:url('https://kebabishoslo.no/wp-content/uploads/2026/09/Naan-over-flamme-—-Kebabish-Original-Oslo.png')}.ko-product-copy{padding:17px 16px 20px}.ko-product-copy h3{font-size:18px!important;margin-bottom:8px}.ko-product-copy p{font-size:14px;line-height:1.4;min-height:42px;margin-bottom:12px!important}.ko-product-copy strong{color:var(--ko-red);font-size:18px}.ko-dots{display:none}
+
+.ko-orderflow{background:var(--ko-dark);color:#fff;min-height:190px}.ko-orderflow__inner{min-height:190px;display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr 1.25fr;align-items:center;gap:18px}.ko-step{display:flex;align-items:center;gap:18px}.ko-step svg{width:44px;height:44px;color:var(--ko-gold);flex:none}.ko-step strong,.ko-step small{display:block}.ko-step strong{font-size:17px;text-transform:uppercase}.ko-step small{margin-top:6px;color:#d4cec4}.ko-arrow{font-size:42px;color:var(--ko-gold)}.ko-order-script{text-align:right;color:var(--ko-gold);font-family:Literata,Georgia,serif;font-style:italic;font-size:35px;line-height:1.05}
+
+.ko-catering{min-height:370px;display:grid;grid-template-columns:29% 52% 19%;background:var(--ko-cream)}
+.ko-catering__main{
+  position:relative;
+  background:
+    radial-gradient(circle at 28% 42%,rgba(198,154,80,.10),transparent 34%),
+    linear-gradient(100deg,#f6f0e4 0%,#f3ecdf 52%,#eee4d3 100%);
+  border-top:1px solid rgba(17,17,15,.08);
+  border-bottom:1px solid rgba(17,17,15,.08)
+}
+.ko-catering__copy h2{color:var(--ko-charcoal)}
+.ko-catering__copy p,.ko-catering__list{color:#37342f}
+.ko-catering__list span{display:flex;align-items:center}
+.ko-catering__list span:before{
+  content:"";
+  width:28px;height:28px;flex:0 0 28px;margin-right:12px;
+  border:1px solid rgba(17,17,15,.18);border-radius:50%;
+  background:radial-gradient(circle at center,var(--ko-gold) 0 2px,transparent 3px)
+}.ko-catering__food{background:linear-gradient(90deg,rgba(0,0,0,.12),transparent),url('https://kebabishoslo.no/wp-content/uploads/2026/09/Naan-over-flamme-—-Kebabish-Original-Oslo.png') center/cover no-repeat}.ko-catering__main{padding:48px 50px;display:grid;grid-template-columns:1.2fr .8fr;gap:50px;align-items:center}.ko-catering__copy h2{font-size:37px!important;line-height:1.05;margin-bottom:20px}.ko-catering__copy p{font-size:15px;line-height:1.6;margin-bottom:24px!important}.ko-catering__list{display:grid;gap:25px;font-size:14px}.ko-catering__bag{background:url('../images/kebabish-takeaway-fire.png') center/cover no-repeat}
+
+.ko-visit{display:none;background:var(--ko-cream)}.ko-visit__info h3{display:flex;align-items:center;gap:9px}.ko-visit__info h3 svg{width:22px;height:22px;color:var(--ko-red)}
+.ko-footer{background:var(--ko-dark);color:#fff;min-height:290px;padding:46px 0}.ko-footer__inner{display:grid;grid-template-columns:1.25fr 1fr .75fr 1fr;gap:55px}.ko-footer__brand img{width:100px;height:100px;object-fit:contain}.ko-footer__brand p{margin:12px 0 16px!important}.ko-footer__brand small{color:#aaa}.ko-footer h4{font-size:15px}.ko-footer__links>div{display:grid;grid-template-columns:1fr 1fr;gap:12px 25px}.ko-footer a{color:#fff!important;text-decoration:none}.ko-footer__social p{display:flex;gap:18px;font-size:28px}.ko-footer__script{color:var(--ko-gold);font-family:Literata,Georgia,serif;font-style:italic;font-size:34px;line-height:1.1;text-align:center}
+
+@media(max-width:760px){
+ .ko-shell{width:calc(100% - 32px)}
+ .ko-header{height:112px}
+ .ko-header__inner{
+   grid-template-columns:44px minmax(0,1fr) 44px;
+   gap:0;
+   padding-inline:0;
+ }
+ .ko-logo{
+   grid-column:2;
+   grid-row:1;
+   justify-self:center;
+   justify-content:center;
+ }
+ .ko-logo img{width:116px;height:116px}
+ .ko-nav,.ko-header__cta{display:none}
+ .ko-menu{
+   display:block;
+   grid-column:3;
+   grid-row:1;
+   justify-self:end;
+   align-self:center;
+   padding:8px 2px 8px 8px;
+ }
+ .ko-hero{height:690px}
+ .ko-hero__bg{
+   background:
+     linear-gradient(180deg,rgba(7,7,7,.78) 0%,rgba(7,7,7,.62) 42%,rgba(7,7,7,.30) 100%),
+     url('https://kebabishoslo.no/wp-content/uploads/2026/09/Kebabish-Josper-grill-–-bearbeidet-hero.png') 64% center/cover no-repeat;
+ }
+ .ko-hero__inner{
+   height:560px;
+   display:block;
+   padding-top:58px;
+ }
+ .ko-hero__copy{
+   width:100%;
+   max-width:100%;
+   height:100%;
+   padding:0 10px;
+   display:flex;
+   flex-direction:column;
+ }
+ .ko-eyebrow{font-size:14px;margin-bottom:16px}
+ .ko-hero h1{
+   font-size:62px!important;
+   line-height:.98!important;
+   max-width:440px;
+   margin-bottom:18px;
+ }
+ .ko-lead{
+   font-size:18px!important;
+   line-height:1.42;
+   max-width:390px;
+   margin-bottom:28px!important;
+ }
+ .ko-actions{
+   display:grid;
+   grid-template-columns:1fr 1fr;
+   width:100%;
+   max-width:100%;
+   gap:10px;
+   margin-top:auto;
+   padding-top:48px;
+ }
+ .ko-btn{
+   width:100%;
+   min-height:66px;
+   padding:0 14px;
+   justify-content:center;
+   font-size:13px;
+ }
+ .ko-hero__script{display:none}
+ .ko-usps{
+   height:156px;
+   width:calc(100% - 8px);
+   grid-template-columns:repeat(4,minmax(0,1fr));
+   gap:0;
+   border-top:1px solid rgba(255,255,255,.09);
+   border-bottom:1px solid rgba(255,255,255,.09);
+ }
+ .ko-usp{
+   min-height:100%;
+   display:flex;
+   flex-direction:column;
+   align-items:center;
+   justify-content:center;
+   gap:10px;
+   padding:12px 6px;
+   text-align:center;
+   font-size:11px;
+   line-height:1.2;
+   border-right:1px solid rgba(255,255,255,.08);
+ }
+ .ko-usp:last-child{border-right:0}
+ .ko-usp svg{
+   display:block;
+   width:38px;
+   height:38px;
+   margin:0;
+ }
+ .ko-favourites{padding:27px 0 34px}.ko-section-head{align-items:center;margin-bottom:20px}.ko-section-head h2{font-size:29px!important}.ko-section-head p{display:none}.ko-section-head>a{font-size:11px}.ko-products{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin-right:-16px;padding-right:16px;scrollbar-width:none}.ko-products::-webkit-scrollbar{display:none}.ko-products article{flex:0 0 76%;scroll-snap-align:start}.ko-product-img{height:185px}.ko-product-copy p{min-height:0}.ko-dots{display:flex;justify-content:center;gap:8px;margin-top:20px}.ko-dots i,.ko-dots b{width:8px;height:8px;border:2px solid #b5aea2;border-radius:50%}.ko-dots b{background:var(--ko-red);border-color:var(--ko-red)}
+ .ko-orderflow{min-height:135px}.ko-orderflow__inner{min-height:135px;width:100%;padding:0 10px;grid-template-columns:repeat(4,1fr);gap:2px}.ko-arrow,.ko-order-script{display:none}.ko-step{display:block;text-align:center}.ko-step svg{width:29px;height:29px;margin:auto}.ko-step strong{font-size:11px;margin-top:6px}.ko-step small{display:none}
+ .ko-catering{min-height:420px;display:block;position:relative;background:linear-gradient(90deg,rgba(12,12,12,.92),rgba(12,12,12,.35)),url('https://kebabishoslo.no/wp-content/uploads/2026/09/Naan-over-flamme-—-Kebabish-Original-Oslo.png') center/cover no-repeat;color:#fff}.ko-catering__food,.ko-catering__bag,.ko-catering__list{display:none}.ko-catering__main{display:block;padding:45px 25px}.ko-catering__copy{max-width:300px}.ko-catering__copy h2{font-size:32px!important;color:#fff!important}.ko-catering__copy p{font-size:14px;line-height:1.6}.ko-btn--dark-outline{border-color:#fff;color:#fff!important}
+ .ko-visit{display:block;padding:30px 0}.ko-visit__inner{display:grid;grid-template-columns:34% 1fr;gap:22px}.ko-store{min-height:205px;background:url('https://kebabishoslo.no/wp-content/uploads/2026/09/Kebabish-Oslo-bearbeidet-interior.png') center/cover no-repeat}.ko-visit__info{display:grid;gap:22px}.ko-visit__info h3{font-size:16px!important;margin-bottom:7px}.ko-visit__info p{font-size:13px;line-height:1.5;margin-bottom:4px!important}.ko-visit__info a{color:var(--ko-red)!important;font-size:12px}
+ .ko-footer{min-height:175px;padding:28px 0}.ko-footer__inner{grid-template-columns:1fr auto;align-items:center}.ko-footer__brand img{width:82px;height:82px}.ko-footer__brand p,.ko-footer__brand small,.ko-footer__links,.ko-footer__script,.ko-footer__social h4{display:none}.ko-footer__social p{font-size:27px;margin:0!important}
+}
+
+
+/* R003.2 — scoped mobile fidelity corrections */
+@media(max-width:760px){
+  .ko-actions{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:9px;width:100%;max-width:100%}
+  .ko-actions .ko-btn{width:100%;padding-left:10px;padding-right:10px;white-space:nowrap}
+  .ko-actions .ko-btn svg{width:18px;height:18px;flex:0 0 18px}
+
+  /* Carousel must load visually on card 1. No JS / persisted slide state. */
+  .ko-products{scroll-behavior:auto;scroll-padding-left:0}
+  .ko-products article:first-child{margin-left:0}
+}
+
+
+/* =========================================================
+   R003.7 — CATERING FIDELITY PATCH (DESKTOP ONLY)
+   Tightens hierarchy against approved desktop wireframe.
+   Mobile remains governed by existing <=760px rules.
+   ========================================================= */
+@media (min-width: 761px){
+  .ko-catering{
+    min-height:320px;
+    grid-template-columns:30% 51% 19%;
+  }
+
+  .ko-catering__main{
+    min-height:320px;
+    display:grid;
+    grid-template-columns:minmax(0,1.15fr) minmax(250px,.85fr);
+    align-items:center;
+    column-gap:clamp(34px,3.2vw,64px);
+    padding:clamp(38px,3.6vw,64px) clamp(42px,4.2vw,76px);
+  }
+
+  .ko-catering__copy{
+    max-width:520px;
+    align-self:center;
+  }
+
+  .ko-catering__copy h2{
+    margin:0 0 16px;
+    font-size:clamp(36px,2.55vw,50px);
+    line-height:1.02;
+    letter-spacing:-.025em;
+  }
+
+  .ko-catering__copy p{
+    max-width:500px;
+    margin:0 0 24px;
+    font-size:clamp(16px,1.05vw,19px);
+    line-height:1.55;
+    color:#2f2c28;
+  }
+
+  .ko-catering__copy .ko-btn,
+  .ko-catering__copy a[class*="btn"]{
+    min-height:58px;
+    padding:0 28px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+  }
+
+  .ko-catering__list{
+    align-self:center;
+    justify-self:start;
+    display:grid;
+    gap:18px;
+    margin:0;
+    padding:0;
+    font-size:clamp(15px,1vw,18px);
+  }
+
+  .ko-catering__list span{
+    min-height:34px;
+    white-space:nowrap;
+  }
+
+  .ko-catering__list span:before{
+    width:30px;
+    height:30px;
+    flex-basis:30px;
+    margin-right:14px;
+  }
+
+  .ko-catering__image,
+  .ko-catering__visual,
+  .ko-catering__photo,
+  .ko-catering__bag{
+    min-height:320px;
+  }
+
+  .ko-catering__bag{
+    background-position:center center;
+  }
+}
+
+
+/* =========================================================
+   R003.8 — CATERING SVG ICONS
+   Replaces R003.4 circular decorative markers with real SVG icons.
+   ========================================================= */
+.ko-catering__list .ko-catering-item{
+  display:flex;
+  align-items:center;
+}
+.ko-catering__list .ko-catering-item:before{
+  content:"";
+  width:30px;
+  height:30px;
+  flex:0 0 30px;
+  margin-right:14px;
+  border:0;
+  border-radius:0;
+  background-color:var(--ko-charcoal);
+  background-image:none;
+  -webkit-mask-repeat:no-repeat;
+  -webkit-mask-position:center;
+  -webkit-mask-size:contain;
+  mask-repeat:no-repeat;
+  mask-position:center;
+  mask-size:contain;
+}
+.ko-catering__list .ko-catering-item--users:before{
+  -webkit-mask-image:url('../icons/users.svg');
+  mask-image:url('../icons/users.svg');
+}
+.ko-catering__list .ko-catering-item--glass:before{
+  -webkit-mask-image:url('../icons/glass.svg');
+  mask-image:url('../icons/glass.svg');
+}
+.ko-catering__list .ko-catering-item--cutlery:before{
+  -webkit-mask-image:url('../icons/cutlery.svg');
+  mask-image:url('../icons/cutlery.svg');
+}
+.ko-catering__list .ko-catering-item--delivery:before{
+  -webkit-mask-image:url('../icons/delivery.svg');
+  mask-image:url('../icons/delivery.svg');
+}
+
+
+/* R003.9 — real Kebabish Original menu imagery (Wolt CDN) */
+.ko-food-1{background-image:url('https://imageproxy.wolt.com/assets/67dc29c5e5ad963a028d4b3b')!important;background-size:cover;background-position:center}
+.ko-food-2{background-image:url('https://imageproxy.wolt.com/menu/menu-images/b3d8863c-4f70-11ea-abb5-0a586477a607_Seekh_kebab.jpeg')!important;background-size:cover;background-position:center}
+.ko-food-3{background-image:url('https://imageproxy.wolt.com/menu/menu-images/shared/d49e5346-b917-11ee-905c-c69da9362b4c_biryani_any_type.jpg')!important;background-size:cover;background-position:center}
+.ko-food-4{background-image:url('https://imageproxy.wolt.com/menu/menu-images/shared/a7790a46-b917-11ee-939a-36fca856b45a_naan_plain.jpg')!important;background-size:cover;background-position:center}
+
+
+/* =========================================================
+   R004.1 — ABOUT KEBABISH
+   ========================================================= */
+.ko-about{
+  background:var(--ko-charcoal);
+  color:var(--ko-cream);
+  padding:clamp(72px,8vw,118px) 0;
+}
+.ko-about__inner{
+  display:grid;
+  grid-template-columns:minmax(150px,.55fr) minmax(0,1.35fr) minmax(240px,.75fr);
+  gap:clamp(34px,5vw,84px);
+  align-items:start;
+}
+.ko-about__eyebrow{
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  font-size:12px;
+  font-weight:800;
+  color:var(--ko-gold);
+  padding-top:12px;
+}
+.ko-about__copy h2{
+  margin:0 0 24px;
+  font-size:clamp(42px,4vw,68px);
+  line-height:.98;
+  letter-spacing:-.035em;
+}
+.ko-about__copy h2 span{color:var(--ko-gold)}
+.ko-about__copy p{
+  max-width:720px;
+  margin:0 0 16px;
+  font-size:clamp(16px,1.12vw,19px);
+  line-height:1.65;
+  color:rgba(255,255,255,.78);
+}
+.ko-about__copy .ko-btn{margin-top:18px}
+.ko-about__facts{
+  display:grid;
+  border-top:1px solid rgba(255,255,255,.16);
+}
+.ko-about__facts span{
+  display:flex;
+  gap:16px;
+  align-items:center;
+  min-height:62px;
+  border-bottom:1px solid rgba(255,255,255,.16);
+  font-weight:700;
+}
+.ko-about__facts strong{
+  color:var(--ko-gold);
+  font-size:11px;
+  letter-spacing:.12em;
+}
+@media(max-width:760px){
+  .ko-about{padding:58px 0 64px}
+  .ko-about__inner{display:block}
+  .ko-about__eyebrow{margin-bottom:24px;padding:0}
+  .ko-about__copy h2{font-size:clamp(38px,11vw,52px)}
+  .ko-about__facts{margin-top:42px}
+}
+
+
+/* R005.0 — owned menu preview imagery; product text/prices remain HTML-controlled */
+.ko-food-1{background-image:url('../images/menu/chicken-tikka.jpg')!important;background-size:cover;background-position:center}
+.ko-food-2{background-image:url('../images/menu/seekh-kebab.jpg')!important;background-size:cover;background-position:center}
+.ko-food-3{background-image:url('../images/menu/chicken-biryani.jpg')!important;background-size:cover;background-position:center}
+.ko-food-4{background-image:url('../images/menu/naan.jpg')!important;background-size:cover;background-position:center}
+
+@media (max-width:760px){
+  .ko-products,
+  .ko-favorites__grid{
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+  }
+  .ko-products > *,
+  .ko-favorites__grid > *{
+    scroll-snap-align:start;
+  }
+}
+
+
+/* R002 mobile hero fine-tune — 2026-09-22
+   User-directed: lead lower, CTA higher, USP icons larger. */
+@media (max-width:760px){
+  .ko-hero h1{
+    margin-bottom:34px !important;
+  }
+
+  .ko-lead{
+    margin-top:0 !important;
+    margin-bottom:0 !important;
+  }
+
+  .ko-actions{
+    margin-top:34px !important;
+    padding-top:0 !important;
+  }
+
+  .ko-usp svg{
+    width:48px !important;
+    height:48px !important;
+  }
+
+  .ko-usp{
+    font-size:12px !important;
+    gap:12px !important;
+  }
+}
+
+
+/* R002 favourites geometry — 2026-09-22
+   Match approved desktop/mobile wireframe structure.
+   Content/prices remain controlled by existing HTML/data. */
+.ko-favourites{
+  padding:54px 0 58px;
+}
+.ko-section-head{
+  align-items:flex-end;
+  margin-bottom:24px;
+}
+.ko-section-head h2{
+  font-size:46px!important;
+  line-height:1.02;
+  margin-bottom:6px;
+}
+.ko-section-head p{
+  font-size:16px;
+}
+.ko-section-head>a{
+  font-size:14px;
+  font-weight:800;
+}
+.ko-products{
+  gap:16px;
+}
+.ko-products article{
+  overflow:hidden;
+}
+.ko-product-img{
+  height:210px;
+}
+.ko-product-copy{
+  padding:16px 15px 18px;
+}
+.ko-product-copy h3{
+  font-size:17px!important;
+}
+.ko-product-copy p{
+  font-size:13px;
+  line-height:1.42;
+}
+.ko-product-copy strong{
+  font-size:17px;
+}
+
+@media(max-width:760px){
+  .ko-favourites{
+    padding:30px 0 34px;
+  }
+  .ko-section-head{
+    align-items:flex-end;
+    margin-bottom:18px;
+  }
+  .ko-section-head h2{
+    font-size:36px!important;
+    line-height:1;
+    margin:0!important;
+  }
+  .ko-section-head p{display:none}
+  .ko-section-head>a{
+    font-size:12px;
+    line-height:1.2;
+    padding-bottom:3px;
+  }
+
+  .ko-products{
+    display:flex;
+    gap:12px;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    margin-right:-16px;
+    padding-right:44px;
+    scrollbar-width:none;
+  }
+  .ko-products::-webkit-scrollbar{display:none}
+
+  .ko-products article{
+    flex:0 0 88%;
+    min-height:150px;
+    display:grid;
+    grid-template-columns:42% 58%;
+    background:#fff;
+    scroll-snap-align:start;
+  }
+  .ko-product-img{
+    height:100%;
+    min-height:150px;
+  }
+  .ko-product-copy{
+    padding:15px 14px 14px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .ko-product-copy h3{
+    font-size:17px!important;
+    line-height:1.2;
+    margin-bottom:7px;
+  }
+  .ko-product-copy p{
+    font-size:13px;
+    line-height:1.35;
+    margin-bottom:9px!important;
+  }
+  .ko-product-copy strong{
+    font-size:17px;
+  }
+  .ko-dots{
+    margin-top:18px;
+    gap:9px;
+  }
+  .ko-dots i,.ko-dots b{
+    width:9px;
+    height:9px;
+  }
+}
+
+
+/* R002 steps geometry — 2026-09-22
+   Mobile/desktop wireframe alignment.
+   Canonical flow stays 3 steps: VELG → BESTILL → HENT. */
+.ko-steps{
+  background:var(--ko-dark);
+  color:#fff;
+  padding:34px 0;
+}
+.ko-steps__grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  align-items:center;
+  gap:0;
+}
+.ko-step{
+  min-height:112px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  padding:0 24px;
+  text-align:left;
+  position:relative;
+}
+.ko-step:not(:last-child)::after{
+  content:"›";
+  position:absolute;
+  right:-5px;
+  top:50%;
+  transform:translateY(-52%);
+  color:var(--ko-gold);
+  font-size:44px;
+  line-height:1;
+  font-weight:300;
+}
+.ko-step svg{
+  width:48px;
+  height:48px;
+  color:var(--ko-gold);
+  flex:none;
+}
+.ko-step strong{
+  display:block;
+  font-size:18px;
+  line-height:1.15;
+  margin-bottom:5px;
+}
+.ko-step span{
+  display:block;
+  font-size:13px;
+  line-height:1.35;
+  opacity:.88;
+}
+
+@media(max-width:760px){
+  .ko-steps{
+    padding:22px 0 24px;
+  }
+  .ko-steps__grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    width:100%;
+  }
+  .ko-step{
+    min-height:126px;
+    flex-direction:column;
+    gap:9px;
+    padding:10px 8px;
+    text-align:center;
+  }
+  .ko-step:not(:last-child)::after{
+    content:"";
+    right:0;
+    width:1px;
+    height:74%;
+    top:13%;
+    transform:none;
+    background:rgba(255,255,255,.10);
+  }
+  .ko-step svg{
+    width:44px;
+    height:44px;
+  }
+  .ko-step strong{
+    font-size:13px;
+    line-height:1.1;
+    margin-bottom:0;
+  }
+  .ko-step span{
+    display:none;
+  }
+}
+
+
+/* R002 catering geometry — mobile fidelity pass 2026-09-22 */
+@media(max-width:760px){
+  .ko-catering{
+    min-height:470px;
+    display:block;
+    position:relative;
+    overflow:hidden;
+    background:
+      linear-gradient(90deg,rgba(12,12,12,.94) 0%,rgba(12,12,12,.72) 48%,rgba(12,12,12,.28) 100%),
+      url('https://kebabishoslo.no/wp-content/uploads/2026/09/Naan-over-flamme-—-Kebabish-Original-Oslo.png') 66% center/cover no-repeat;
+    color:#fff;
+  }
+
+  .ko-catering__food,
+  .ko-catering__bag,
+  .ko-catering__list{
+    display:none;
+  }
+
+  .ko-catering__main{
+    min-height:470px;
+    display:flex;
+    align-items:center;
+    padding:42px 28px 40px;
+    background:transparent;
+    border:0;
+  }
+
+  .ko-catering__copy{
+    max-width:78%;
+  }
+
+  .ko-catering__copy h2{
+    max-width:310px;
+    margin:0 0 18px;
+    color:#fff!important;
+    font-size:42px!important;
+    line-height:1.02;
+    letter-spacing:-.025em;
+  }
+
+  .ko-catering__copy p{
+    max-width:330px;
+    margin:0 0 26px!important;
+    color:#fff;
+    font-size:16px;
+    line-height:1.55;
+  }
+
+  .ko-catering__copy .ko-btn,
+  .ko-catering__copy a[class*="btn"]{
+    width:auto;
+    min-width:150px;
+    min-height:54px;
+    padding:0 20px;
+    border:2px solid var(--ko-gold);
+    color:#fff!important;
+    background:rgba(10,10,10,.20);
+    font-size:12px;
+    font-weight:800;
+  }
+}
+
+
+/* R002 visit/location mobile geometry — 2026-09-22
+   Address is canonical. Opening hours remain hidden until verified. */
+@media(max-width:760px){
+  .ko-visit{
+    display:block;
+    padding:30px 0 34px;
+    background:var(--ko-cream);
+  }
+
+  .ko-visit__inner{
+    display:grid;
+    grid-template-columns:38% 1fr;
+    gap:24px;
+    align-items:stretch;
+  }
+
+  .ko-store{
+    min-height:220px;
+    border-radius:2px;
+    background:
+      url('https://kebabishoslo.no/wp-content/uploads/2026/09/Kebabish-Oslo-bearbeidet-interior.png')
+      center/cover no-repeat;
+  }
+
+  .ko-visit__info{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:20px;
+  }
+
+  .ko-visit__info > div:last-child{
+    display:none;
+  }
+
+  .ko-visit__info h3{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:18px!important;
+    line-height:1.15;
+    margin:0 0 10px!important;
+  }
+
+  .ko-visit__info h3 svg{
+    width:24px;
+    height:24px;
+    flex:none;
+    color:var(--ko-dark);
+  }
+
+  .ko-visit__info p{
+    font-size:15px;
+    line-height:1.45;
+    margin:0 0 10px!important;
+  }
+
+  .ko-visit__info a{
+    display:inline-block;
+    color:var(--ko-red)!important;
+    font-size:14px;
+    font-weight:800;
+    text-decoration:none;
+    border-bottom:1px solid currentColor;
+    padding-bottom:3px;
+  }
+}
+
+
+/* R002 footer mobile geometry — 2026-09-22
+   Match wireframe: logo left, social icons right, minimal dark footer. */
+@media(max-width:760px){
+  .ko-footer{
+    min-height:190px;
+    padding:28px 0;
+    background:var(--ko-dark);
+  }
+
+  .ko-footer__inner{
+    min-height:134px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    align-items:center;
+    gap:24px;
+  }
+
+  .ko-footer__brand{
+    display:flex;
+    align-items:center;
+  }
+
+  .ko-footer__brand img{
+    width:118px;
+    height:118px;
+    object-fit:contain;
+  }
+
+  .ko-footer__brand p,
+  .ko-footer__brand small,
+  .ko-footer__links,
+  .ko-footer__script,
+  .ko-footer__social h4{
+    display:none;
+  }
+
+  .ko-footer__social{
+    justify-self:end;
+  }
+
+  .ko-footer__social p{
+    display:flex;
+    align-items:center;
+    gap:22px;
+    margin:0!important;
+    font-size:34px;
+    line-height:1;
+  }
+
+  .ko-footer__social a{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:40px;
+    height:40px;
+    color:#fff!important;
+  }
+}
+
+
+/* R002 footer social icons — 2026-09-22 */
+.ko-footer__social a svg{
+  width:30px;
+  height:30px;
+  display:block;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.ko-footer__social a[aria-label="Facebook"] svg{
+  fill:currentColor;
+  stroke:none;
+}
+.ko-footer__social .ko-social-dot{
+  fill:currentColor;
+  stroke:none;
+}
+
+@media(max-width:760px){
+  .ko-footer__social a svg{
+    width:34px;
+    height:34px;
+  }
+}
+
+
+/* =========================================================
+   R003 — VISUAL POLISH PASS 2026-09-22
+   Scope: typography, buttons, icon consistency, separators,
+   section rhythm and tablet/desktop refinement.
+   Logo deliberately left untouched.
+   ========================================================= */
+
+:root{
+  --ko-radius-sm:2px;
+  --ko-radius-md:4px;
+  --ko-rule:rgba(16,17,15,.12);
+  --ko-rule-dark:rgba(255,255,255,.12);
+}
+
+.ko-main h1,
+.ko-main h2,
+.ko-main h3,
+.ko-main h4{
+  text-wrap:balance;
+}
+
+.ko-main p{
+  text-wrap:pretty;
+}
+
+.ko-btn{
+  border-radius:var(--ko-radius-sm);
+  letter-spacing:.055em;
+  font-weight:800;
+  transition:transform .18s ease, background-color .18s ease, border-color .18s ease, opacity .18s ease;
+}
+
+@media(hover:hover){
+  .ko-btn:hover{
+    transform:translateY(-1px);
+  }
+}
+
+.ko-product,
+.ko-products article,
+.ko-store{
+  border-radius:var(--ko-radius-sm);
+}
+
+.ko-product-copy h3,
+.ko-step strong,
+.ko-visit__info h3{
+  letter-spacing:-.01em;
+}
+
+.ko-favourites,
+.ko-visit{
+  border-top:1px solid var(--ko-rule);
+}
+
+.ko-steps{
+  border-top:1px solid var(--ko-rule-dark);
+  border-bottom:1px solid var(--ko-rule-dark);
+}
+
+.ko-product-copy strong{
+  color:var(--ko-red);
+}
+
+.ko-section-head>a,
+.ko-visit__info a{
+  text-underline-offset:4px;
+}
+
+.ko-step svg,
+.ko-usp svg{
+  stroke-width:1.7;
+}
+
+.ko-footer__social a{
+  opacity:.92;
+  transition:opacity .18s ease, transform .18s ease;
+}
+
+@media(hover:hover){
+  .ko-footer__social a:hover{
+    opacity:1;
+    transform:translateY(-1px);
+  }
+}
+
+/* Tablet bridge: prevent geometry from jumping directly from desktop to mobile. */
+@media(min-width:761px) and (max-width:1100px){
+  .ko-wrap,
+  .ko-header__inner,
+  .ko-hero__inner{
+    width:min(100% - 48px,1180px);
+  }
+
+  .ko-header__inner{
+    grid-template-columns:150px minmax(0,1fr) 155px;
+    gap:22px;
+  }
+
+  .ko-nav{
+    gap:18px;
+  }
+
+  .ko-hero__copy{
+    width:min(650px,64vw);
+  }
+
+  .ko-hero h1{
+    font-size:clamp(58px,7vw,78px);
+  }
+
+  .ko-products{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+  .ko-product-img{
+    height:240px;
+  }
+
+  .ko-step{
+    padding:0 16px;
+    gap:14px;
+  }
+
+  .ko-step svg{
+    width:42px;
+    height:42px;
+  }
+
+  .ko-catering__main{
+    padding-left:clamp(34px,5vw,68px);
+    padding-right:clamp(34px,5vw,68px);
+  }
+}
+
+/* Mobile finishing pass. */
+@media(max-width:760px){
+  .ko-wrap{
+    width:calc(100% - 32px);
+  }
+
+  .ko-btn{
+    letter-spacing:.045em;
+  }
+
+  .ko-favourites,
+  .ko-visit{
+    border-top-color:rgba(16,17,15,.10);
+  }
+
+  .ko-products article{
+    box-shadow:0 1px 0 rgba(16,17,15,.08);
+  }
+
+  .ko-step svg,
+  .ko-usp svg{
+    stroke-width:1.65;
+  }
+
+  .ko-catering__copy p{
+    text-shadow:0 1px 12px rgba(0,0,0,.26);
+  }
+
+  .ko-footer{
+    border-top:1px solid rgba(255,255,255,.08);
+  }
+}
+
+
+/* R004 functional QA — mobile navigation */
+@media(max-width:760px){
+  .ko-header__inner{position:relative}
+  .ko-header.is-menu-open .ko-nav{
+    display:flex;
+    position:absolute;
+    z-index:50;
+    top:100%;
+    left:0;
+    right:0;
+    width:100%;
+    padding:18px 20px 20px;
+    flex-direction:column;
+    align-items:stretch;
+    gap:0;
+    background:var(--ko-dark);
+    border-top:1px solid rgba(255,255,255,.10);
+    box-shadow:0 16px 32px rgba(0,0,0,.26);
+  }
+  .ko-header.is-menu-open .ko-nav a{
+    display:block;
+    padding:13px 4px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .ko-header.is-menu-open .ko-nav a:last-child{border-bottom:0}
+  .ko-menu{position:relative;z-index:51}
+}
+
+
+/* R004 fix — canonical 3-step orderflow */
+.ko-orderflow{
+  background:var(--ko-dark);
+  color:#fff;
+  min-height:190px;
+}
+
+.ko-orderflow__inner{
+  min-height:190px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  align-items:stretch;
+  gap:0;
+}
+
+.ko-orderflow .ko-step{
+  min-height:190px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  padding:28px 34px;
+  position:relative;
+}
+
+.ko-orderflow .ko-step:not(:last-child)::after{
+  content:"";
+  position:absolute;
+  right:0;
+  top:22%;
+  width:1px;
+  height:56%;
+  background:rgba(255,255,255,.12);
+}
+
+.ko-orderflow .ko-step svg{
+  width:46px;
+  height:46px;
+  color:var(--ko-gold);
+  flex:none;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.ko-orderflow .ko-step strong,
+.ko-orderflow .ko-step small{
+  display:block;
+}
+
+.ko-orderflow .ko-step strong{
+  font-size:18px;
+  line-height:1.1;
+  text-transform:uppercase;
+}
+
+.ko-orderflow .ko-step small{
+  margin-top:7px;
+  color:#d4cec4;
+  font-size:13px;
+  line-height:1.35;
+}
+
+.ko-order-script,
+.ko-orderflow .ko-arrow{
+  display:none!important;
+}
+
+@media(max-width:760px){
+  .ko-orderflow{
+    min-height:0;
+  }
+
+  .ko-orderflow__inner{
+    min-height:0;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    width:100%;
+  }
+
+  .ko-orderflow .ko-step{
+    min-height:148px;
+    flex-direction:column;
+    justify-content:center;
+    gap:10px;
+    padding:18px 8px;
+    text-align:center;
+  }
+
+  .ko-orderflow .ko-step:not(:last-child)::after{
+    top:16%;
+    height:68%;
+  }
+
+  .ko-orderflow .ko-step svg{
+    width:42px;
+    height:42px;
+  }
+
+  .ko-orderflow .ko-step strong{
+    font-size:13px;
+  }
+
+  .ko-orderflow .ko-step small{
+    display:none;
+  }
+}
+
+
+/* =========================================================
+   KEB-WEB-FOOTER-001 — MAIN/CATERING FOOTER SYNC
+   Source: page-catering.html + kebabish-catering.css V1.8
+   Main-page scope only through .kc-footer classes.
+   ========================================================= */
+.kc-footer{
+  background:#171817!important;
+  color:#f6f0e4;
+  padding:54px 0 44px;
+  min-height:0;
+}
+.kc-footer .kc-footer__grid{
+  display:grid;
+  grid-template-columns:1.15fr 1fr .7fr .9fr;
+  gap:clamp(36px,5vw,88px);
+  align-items:start;
+}
+.kc-footer .kc-footer__logo{
+  display:inline-block;
+  margin-bottom:22px;
+}
+.kc-footer .kc-footer__logo img{
+  display:block;
+  width:96px;
+  height:auto;
+  object-fit:contain;
+}
+.kc-footer .kc-footer__brand{
+  display:block;
+}
+.kc-footer .kc-footer__brand p{
+  display:block;
+  margin:0 0 20px!important;
+  font-size:1rem!important;
+  color:#f6f0e4;
+}
+.kc-footer .kc-footer__brand small{
+  display:inline;
+  color:rgba(246,240,228,.62);
+  font-size:.82rem;
+}
+.kc-footer .kc-footer__title{
+  display:block;
+  margin:0 0 18px!important;
+  font-size:.82rem!important;
+  font-weight:700;
+  color:#f6f0e4;
+}
+.kc-footer .kc-footer__links{
+  display:block;
+}
+.kc-footer .kc-footer__linkgrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:28px;
+}
+.kc-footer .kc-footer__linkgrid>div{
+  display:grid;
+  gap:13px;
+}
+.kc-footer .kc-footer__linkgrid a{
+  color:#f6f0e4!important;
+  text-decoration:none!important;
+  font-size:1rem;
+}
+.kc-footer .kc-footer__linkgrid a:hover{
+  color:var(--ko-gold)!important;
+}
+.kc-footer .kc-footer__social{
+  display:block;
+  justify-self:auto;
+}
+.kc-footer .kc-footer__sociallinks{
+  display:flex;
+  gap:18px;
+  align-items:center;
+}
+.kc-footer .kc-footer__sociallinks a{
+  display:grid;
+  width:34px;
+  height:34px;
+  place-items:center;
+  color:#f6f0e4!important;
+  text-decoration:none!important;
+  font-size:1.45rem;
+  font-weight:700;
+}
+.kc-footer .kc-footer__tagline{
+  display:block;
+  justify-self:end;
+  color:var(--ko-gold);
+  font-family:Literata,Georgia,serif;
+  font-style:italic;
+  font-size:2.35rem;
+  line-height:.95;
+  text-align:center;
+}
+@media(max-width:900px){
+  .kc-footer .kc-footer__grid{
+    grid-template-columns:1fr 1fr;
+  }
+  .kc-footer .kc-footer__tagline{
+    justify-self:start;
+    text-align:left;
+  }
+}
+@media(max-width:620px){
+  .kc-footer{
+    min-height:0;
+    padding:46px 0 86px;
+  }
+  .kc-footer .kc-footer__grid{
+    min-height:0;
+    grid-template-columns:1fr;
+    gap:34px;
+    align-items:start;
+  }
+  .kc-footer .kc-footer__brand{
+    display:block;
+  }
+  .kc-footer .kc-footer__logo img{
+    width:96px;
+    height:auto;
+  }
+  .kc-footer .kc-footer__brand p,
+  .kc-footer .kc-footer__brand small,
+  .kc-footer .kc-footer__links,
+  .kc-footer .kc-footer__title,
+  .kc-footer .kc-footer__tagline{
+    display:block;
+  }
+  .kc-footer .kc-footer__linkgrid{
+    grid-template-columns:1fr 1fr;
+  }
+  .kc-footer .kc-footer__social{
+    justify-self:start;
+  }
+  .kc-footer .kc-footer__tagline{
+    font-size:2rem;
+  }
+}
+
+
+/* KEB-WEB-FOOTER-SOCIAL — visual icons only; profile links intentionally not active yet */
+.kc-footer .kc-footer__sociallinks .kc-social-icon{
+  display:grid;
+  width:34px;
+  height:34px;
+  place-items:center;
+  color:#f6f0e4;
+}
+.kc-footer .kc-footer__sociallinks .kc-social-icon svg{
+  width:25px;
+  height:25px;
+  display:block;
+  overflow:visible;
+}
+.kc-footer .kc-footer__sociallinks .kc-social-icon svg rect,
+.kc-footer .kc-footer__sociallinks .kc-social-icon svg circle:not(.kc-social-fill){
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+}
+.kc-footer .kc-footer__sociallinks .kc-social-icon svg path,
+.kc-footer .kc-footer__sociallinks .kc-social-icon svg .kc-social-fill{
+  fill:currentColor;
+  stroke:none;
+}
