@@ -1143,3 +1143,70 @@ body .wp-site-blocks{padding:0}
 @media(max-width:390px){
   .kc-occasion-link{grid-template-columns:1fr}
 }
+
+/* KEBABISH UX V2.5.4b — targeted occasion cards and approved brand story. */
+.kc-page .kc-occasion-card{
+  transition:border-color .22s ease,box-shadow .22s ease;
+}
+.kc-page .kc-occasion-card:hover,
+.kc-page .kc-occasion-card:focus-within{
+  border-color:var(--kc-gold);
+  box-shadow:0 12px 35px rgba(16,17,15,.08),0 0 0 1px rgba(198,154,80,.16);
+}
+.kc-page .kc-occasion-link{cursor:pointer}
+.kc-page .kc-occasion-link:focus-visible{
+  outline:3px solid var(--kc-gold);
+  outline-offset:3px;
+}
+/* CTA lives on its own row, avoiding a collision with long titles. */
+.kc-page .kc-occasion-card__body{grid-template-columns:auto minmax(0,1fr)}
+.kc-page .kc-occasion-card__body > div{min-width:0}
+.kc-page .kc-card-cta{
+  display:inline-flex;
+  align-items:center;
+  justify-self:start;
+  grid-column:2;
+  gap:.45em;
+  color:var(--kc-rust);
+  font:800 .72rem/1.3 Manrope,Arial,sans-serif;
+  white-space:normal;
+  transition:color .22s ease;
+}
+.kc-page .kc-card-cta__arrow{
+  display:inline-block;
+  font-size:1.2em;
+  transition:transform .22s ease;
+}
+.kc-page .kc-occasion-card:hover .kc-card-cta,
+.kc-page .kc-occasion-card:focus-within .kc-card-cta{color:#833122}
+.kc-page .kc-occasion-card:hover .kc-card-cta__arrow,
+.kc-page .kc-occasion-card:focus-within .kc-card-cta__arrow{transform:translateX(4px)}
+.kc-page .kca-start__inner{max-width:990px}
+.kc-page .kca-start h2{max-width:850px}
+.kc-page .kc-story__text{max-width:740px;margin:22px 0 0}
+.kc-page .kc-story__text p{
+  color:rgba(255,255,255,.83);
+  font-size:clamp(.93rem,1.1vw,1.05rem);
+  line-height:1.75;
+  margin:0 0 13px!important;
+}
+.kc-page .kc-story__text .kc-story__signature{
+  color:var(--kc-gold);
+  font-family:Literata,Georgia,serif;
+  font-style:italic;
+  font-size:1.25rem;
+  margin:17px 0 20px!important;
+}
+.kc-page .kca-start .kc-story__action{max-width:710px;margin:0 0 18px!important}
+@media(max-width:620px){
+  .kc-page .kc-occasion-card__body{grid-template-columns:auto minmax(0,1fr)}
+  .kc-page .kc-card-cta{font-size:.69rem}
+  .kc-page .kc-story__text{margin-top:16px}
+  .kc-page .kc-story__text p{line-height:1.6;margin-bottom:11px!important}
+  .kc-page .kc-story__text .kc-story__signature{margin:12px 0 15px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .kc-page .kc-occasion-card,
+  .kc-page .kc-card-cta,
+  .kc-page .kc-card-cta__arrow{transition:none!important}
+}

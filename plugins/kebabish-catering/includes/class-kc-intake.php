@@ -127,9 +127,15 @@ final class KC_Intake {
 			<div class="kc-inquiry__media" aria-hidden="true"></div>
 			<div class="kc-inquiry__shade" aria-hidden="true"></div>
 			<div class="ko-shell kca-start__inner">
-				<p class="kc-kicker">Bestill catering <span></span></p>
-				<h2 id="kc-inquiry-title">Hva skal maten brukes til?</h2>
-				<p class="kca-start__lead">Velg anledning. Noen korte spørsmål, så velger dere pakker og tillegg, ser over alt og sender. Du betaler ikke nå – Kebabish går gjennom bestillingen først.</p>
+				<p class="kc-kicker">Vår historie <span></span></p>
+				<h2 id="kc-inquiry-title">Et bord har alltid plass til én til.</h2>
+				<div class="kc-story__text">
+					<p>I pakistansk matkultur har måltidet en helt spesiell plass. Fra store Eid-feiringer til små sammenkomster med familien – maten er ofte det som bringer oss sammen.</p>
+					<p>Rundt bordet deles mer enn mat. Her møtes generasjoner, historier fortelles og fellesskapet får leve videre.</p>
+					<p>Det er denne følelsen vi ønsker å ta med inn i Kebabish. Smaken av grill, duften av krydder og gleden ved å servere mat som mennesker kan samles rundt.</p>
+					<p class="kc-story__signature">Charcoal &amp; Spice</p>
+				</div>
+				<p class="kca-start__lead kc-story__action">Velg anledning for å starte cateringbestillingen. Kebabish bekrefter før betaling.</p>
 				<?php if ( 'yes' === KC_Core::setting( 'test_banner', 'yes' ) ) : ?>
 					<p class="kco-test">Testbestilling – pakker og priser er ikke endelige.</p>
 				<?php endif; ?>
