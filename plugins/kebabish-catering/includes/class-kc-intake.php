@@ -123,36 +123,44 @@ final class KC_Intake {
 			echo self::package_gallery( $packages ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside.
 		}
 		?>
-		<section class="kc-inquiry kca-start" id="foresporsel" aria-labelledby="kc-inquiry-title">
+		<section class="kc-inquiry kca-start kc-story-v255" id="foresporsel" aria-labelledby="kc-inquiry-title">
 			<div class="kc-inquiry__media" aria-hidden="true"></div>
 			<div class="kc-inquiry__shade" aria-hidden="true"></div>
-			<div class="ko-shell kca-start__inner">
-				<p class="kc-kicker">Vår historie <span></span></p>
-				<h2 id="kc-inquiry-title">Et bord har alltid plass til én til.</h2>
-				<div class="kc-story__text">
-					<p>I pakistansk matkultur har måltidet en helt spesiell plass. Fra store Eid-feiringer til små sammenkomster med familien – maten er ofte det som bringer oss sammen.</p>
-					<p>Rundt bordet deles mer enn mat. Her møtes generasjoner, historier fortelles og fellesskapet får leve videre.</p>
-					<p>Det er denne følelsen vi ønsker å ta med inn i Kebabish. Smaken av grill, duften av krydder og gleden ved å servere mat som mennesker kan samles rundt.</p>
-					<p class="kc-story__signature">Charcoal &amp; Spice</p>
+			<div class="ko-shell kc-story-v255__grid kca-start__inner">
+				<div class="kc-story-v255__story">
+					<p class="kc-kicker">Vår historie <span></span></p>
+					<h2 id="kc-inquiry-title">Et bord har alltid plass til én til.</h2>
+					<div class="kc-story__text">
+						<p>I pakistansk matkultur har måltidet en helt spesiell plass. Fra store Eid-feiringer til små sammenkomster med familien – maten er ofte det som bringer oss sammen.</p>
+						<p>Rundt bordet deles mer enn mat. Her møtes generasjoner, historier fortelles og fellesskapet får leve videre.</p>
+						<p>Det er denne følelsen vi ønsker å ta med inn i Kebabish. Smaken av grill, duften av krydder og gleden ved å servere mat som mennesker kan samles rundt.</p>
+						<p class="kc-story__signature">Charcoal &amp; Spice</p>
+					</div>
 				</div>
-				<p class="kca-start__lead kc-story__action">Velg anledning for å starte cateringbestillingen. Kebabish bekrefter før betaling.</p>
-				<?php if ( 'yes' === KC_Core::setting( 'test_banner', 'yes' ) ) : ?>
-					<p class="kco-test">Testbestilling – pakker og priser er ikke endelige.</p>
-				<?php endif; ?>
-				<div class="kca-start__choices" data-kca-start hidden>
-					<?php foreach ( self::occasions() as $key => $label ) : ?>
-						<a class="kc-button kc-button--red kca-start__btn" href="<?php echo esc_url( add_query_arg( 'occasion', $key, $return ) . '#foresporsel' ); ?>" data-kc-occasion="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $label ); ?>
-							<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
-						</a>
-					<?php endforeach; ?>
-				</div>
-				<p class="kca-start__resume" data-kca-resume hidden>
-					<button type="button" class="kc-button kc-button--line" data-kca-resume-btn>Fortsett bestillingen</button>
-				</p>
-				<noscript>
-					<?php echo self::fallback_form( $old, $errors, $qty, $return ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside. ?>
-				</noscript>
+				<aside class="kc-story-v255__order" aria-label="Start cateringbestilling">
+					<p class="kc-story-v255__eyebrow">Catering fra Kebabish</p>
+					<h3>La maten samle gjengen.</h3>
+					<p class="kc-story-v255__description">Velg anledning, cateringmeny og antall personer. Send forespørselen – vi bekrefter før betaling.</p>
+					<?php if ( 'yes' === KC_Core::setting( 'test_banner', 'yes' ) ) : ?>
+						<p class="kco-test">Testbestilling – pakker og priser er ikke endelige.</p>
+					<?php endif; ?>
+					<details class="kc-story-v255__picker">
+						<summary class="kc-story-v255__cta">Start cateringbestilling <span aria-hidden="true">→</span></summary>
+						<div class="kca-start__choices kc-story-v255__choices" data-kca-start hidden>
+							<?php foreach ( self::occasions() as $key => $label ) : ?>
+								<a class="kc-story-v255__choice" href="<?php echo esc_url( add_query_arg( 'occasion', $key, $return ) . '#foresporsel' ); ?>" data-kc-occasion="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $label ); ?><span aria-hidden="true">→</span></a>
+							<?php endforeach; ?>
+						</div>
+					</details>
+					<p class="kca-start__resume" data-kca-resume hidden><button type="button" class="kc-button kc-button--line" data-kca-resume-btn>Fortsett bestillingen</button></p>
+					<p class="kc-story-v255__fine">Henting · Breigata 12, Oslo<br>Ingen betaling ved innsending</p>
+				</aside>
 			</div>
+			<noscript>
+				<div class="ko-shell kc-story-v255__fallback">
+					<?php echo self::fallback_form( $old, $errors, $qty, $return ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside. ?>
+				</div>
+			</noscript>
 		</section>
 
 		<form class="kco kco--v2" id="kca-form" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" novalidate
