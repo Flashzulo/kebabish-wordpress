@@ -229,7 +229,8 @@
 			list.push({ tags: ['mild'], reason: 'Dere ønsket mild mat', base: 0, none: T.mild_none });
 		}
 		if (c > 0) {
-			list.push({ tags: ['kids', 'mild'], reason: 'Til barna (' + c + ')', base: c });
+			// Children: something they like (dessert) rather than another curry; quantity = number of children.
+			list.push({ tags: ['kids', 'dessert'], reason: 'Til barna (' + c + ')', base: c });
 		}
 		var oi = (cfg() && cfg().intents) || {};
 		steps().forEach(function (st) {
@@ -262,8 +263,8 @@
 		var n = guests() || MIN_PERSONS || 1;
 		var q;
 		switch (p.rule) {
-			case 'guest': q = n; break;
-			case 'guest4': q = Math.ceil(n / 4); break;
+			case 'guest': q = it.base || n; break;
+			case 'guest4': q = Math.ceil((it.base || n) / 4); break;
 			case 'group': q = it.base || Math.ceil(n / 4); break;
 			default: q = 1;
 		}
@@ -280,6 +281,10 @@
 			}
 			// Intent already covered by something the customer chose -> the next one moves up.
 			if (ADDS.some(function (p) { return S.qty[p.id] && tagged(p, it.tags); })) {
+				return;
+			}
+			// Intent already answered by a suggestion above (e.g. birthday dessert after the children's dessert).
+			if (out.some(function (s) { return tagged(s.p, it.tags); })) {
 				return;
 			}
 			var pick = null;
@@ -715,6 +720,7 @@
 				p.img ? h('img', { className: 'kca-pkg__img', src: p.img, alt: '', loading: 'lazy' }) : null,
 				h('div', { className: 'kca-pkg__body' }, [
 					h('h3', { text: p.name }),
+					p.camp ? h('p', { className: 'kca-camp', text: p.camp }) : null,
 					h('p', { className: 'kca-price', text: priceLine(p) }),
 					p.desc ? h('p', { className: 'kca-desc', text: p.desc }) : null,
 					h('div', { className: 'kca-pkg__row' }, [
@@ -756,6 +762,7 @@
 		return h('div', { className: 'kca-addon' + (S.qty[p.id] ? ' is-selected' : '') }, [
 			h('div', { className: 'kca-addon__text' }, [
 				h('span', { className: 'kca-addon__name', text: p.name }),
+				p.camp ? h('span', { className: 'kca-camp', text: p.camp }) : null,
 				h('span', { className: 'kca-price', text: priceLine(p) + (p.min > 1 ? ' · min. ' + p.min : '') })
 			]),
 			stepper(p, ctx)
@@ -960,6 +967,21 @@
 			}
 		}
 		chk('kc_date', function (v) { return /^\d{4}-\d{2}-\d{2}$/.test(v); }, 'Velg dato for henting.');
+		// Campaign menus: pickup date inside every selected product's window (server checks again).
+		var dateField = form.querySelector('[name="kc_date"]');
+		var dv = dateField ? dateField.value.trim() : '';
+		if (/^\d{4}-\d{2}-\d{2}$/.test(dv)) {
+			Object.keys(S.qty).some(function (id) {
+				var p = BY_ID[id];
+				var w = p && p.pick ? p.pick : ['', ''];
+				if ((w[0] && dv < w[0]) || (w[1] && dv > w[1])) {
+					dateField.setAttribute('aria-invalid', 'true');
+					bad.push({ f: dateField, msg: p.name + ' kan ikke hentes denne datoen.' + (p.camp ? ' ' + p.camp + '.' : '') });
+					return true;
+				}
+				return false;
+			});
+		}
 		chk('kc_time', function (v) { return v !== ''; }, 'Velg hentetid.');
 		chk('kc_name', function (v) { return v.length >= 2; }, 'Skriv inn navn.');
 		chk('kc_phone', function (v) { var d = v.replace(/\D+/g, ''); return d.length >= 8 && d.length <= 15; }, 'Skriv inn et gyldig telefonnummer.');

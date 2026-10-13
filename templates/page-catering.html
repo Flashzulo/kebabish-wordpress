@@ -40,10 +40,10 @@
           <h1 id="kc-title">Fredagsmat.<br>Møtemat.<br>Mat til gjengen.</h1>
           <p class="kc-hero__lead">Autentiske smaker fra Kebabish — enkelt å dele. For kontor, møter og private sammenkomster.</p>
           <div class="kc-actions">
-            <a class="kc-button kc-button--red" href="#foresporsel">Be om catering
+            <a class="kc-button kc-button--red" href="#anledninger">Start cateringbestilling
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
             </a>
-            <a class="kc-button kc-button--line" href="/meny">Se meny
+            <a class="kc-button kc-button--line" href="#cateringmenyer">Se cateringmenyer
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
             </a>
           </div>
@@ -51,7 +51,42 @@
       </div>
     </section>
 
-    <section class="kc-section kc-occasions" aria-labelledby="kc-occasions-title">
+    <section class="kc-section kc-steps" aria-labelledby="kc-steps-title">
+      <div class="ko-shell">
+        <div class="kc-section-head">
+          <p class="kc-section-label"><span></span> Slik fungerer det <span></span></p>
+          <h2 id="kc-steps-title">Tre enkle steg</h2>
+        </div>
+
+        <div class="kc-step-grid">
+          <article class="kc-step">
+            <span class="kc-step__number">1</span>
+            <span class="kc-step__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M5 18h14M7 18v-7a5 5 0 0 1 10 0v7M10 6V4h4v2"/></svg>
+            </span>
+            <div><h3>Velg anledning</h3><p>Fortell oss om maten er til kontoret, et møte eller en privat feiring.</p></div>
+          </article>
+
+          <article class="kc-step">
+            <span class="kc-step__number">2</span>
+            <span class="kc-step__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M2.5 20c.4-4.6 2.2-7 5.5-7s5.1 2.4 5.5 7M10.5 20c.4-3.8 2.2-6 5.5-6s5.1 2.2 5.5 6"/></svg>
+            </span>
+            <div><h3>Sett sammen menyen</h3><p>Velg pakker, antall personer og eventuelle tilleggsretter.</p></div>
+          </article>
+
+          <article class="kc-step">
+            <span class="kc-step__number">3</span>
+            <span class="kc-step__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M5 5h14v15H5zM8 3v4M16 3v4M5 9h14M9 14l2 2 4-4"/></svg>
+            </span>
+            <div><h3>Send bestillingen</h3><p>Se over valgene og send. Kebabish bekrefter før betaling.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="kc-section kc-occasions" id="anledninger" aria-labelledby="kc-occasions-title">
       <div class="ko-shell">
         <div class="kc-section-head">
           <p class="kc-section-label"><span></span> Passer for flere anledninger <span></span></p>
@@ -108,40 +143,8 @@
       </div>
     </section>
 
-    <section class="kc-section kc-steps" aria-labelledby="kc-steps-title">
-      <div class="ko-shell">
-        <div class="kc-section-head">
-          <p class="kc-section-label"><span></span> Slik fungerer det <span></span></p>
-          <h2 id="kc-steps-title">Tre enkle steg</h2>
-        </div>
-
-        <div class="kc-step-grid">
-          <article class="kc-step">
-            <span class="kc-step__number">1</span>
-            <span class="kc-step__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M5 18h14M7 18v-7a5 5 0 0 1 10 0v7M10 6V4h4v2"/></svg>
-            </span>
-            <div><h3>Velg</h3><p>Velg en pakke eller sett sammen det som passer dere.</p></div>
-          </article>
-
-          <article class="kc-step">
-            <span class="kc-step__number">2</span>
-            <span class="kc-step__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M2.5 20c.4-4.6 2.2-7 5.5-7s5.1 2.4 5.5 7M10.5 20c.4-3.8 2.2-6 5.5-6s5.1 2.2 5.5 6"/></svg>
-            </span>
-            <div><h3>Oppgi antall</h3><p>Fortell oss hvor mange dere er og når dere ønsker maten.</p></div>
-          </article>
-
-          <article class="kc-step">
-            <span class="kc-step__number">3</span>
-            <span class="kc-step__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M5 5h14v15H5zM8 3v4M16 3v4M5 9h14M9 14l2 2 4-4"/></svg>
-            </span>
-            <div><h3>Hent</h3><p>Vi bekrefter detaljene før bestillingen. Levering legges til når tilbudet er operativt verifisert.</p></div>
-          </article>
-        </div>
-      </div>
-    </section>
+    <!-- Cateringmenyer: kort fra WooCommerce-pakkene (plugin kebabish-catering, issue #4). Rediger tekst, bilde og pris på produktet. -->
+    [kebabish_catering_menus]
 
     [kebabish_catering_order]
   </main>
@@ -196,7 +199,7 @@
 
   <nav class="kc-mobile-bar" aria-label="Hurtigmeny">
     <a href="/meny">Se meny</a>
-    <a class="kc-mobile-bar__primary" href="#pakker">Bestill catering</a>
+    <a class="kc-mobile-bar__primary" href="#anledninger">Start bestilling</a>
   </nav>
 </div>
 <!-- /wp:html -->

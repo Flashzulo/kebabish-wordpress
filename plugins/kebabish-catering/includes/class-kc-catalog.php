@@ -71,6 +71,21 @@ final class KC_Catalog {
 				'description'       => 'Gjelder kun tillegg. For pakker gjelder «Minimum personer» totalt for hele bestillingen (Catering-innstillinger).',
 			)
 		);
+		echo '<p class="form-field"><strong>Kampanje / tidsbegrenset meny</strong><br><span class="description">La stå tomt for faste produkter. Tidspunkt er norsk tid (Europe/Oslo). Utenfor perioden vises produktet ikke og kan ikke bestilles.</span></p>';
+		global $product_object;
+		foreach ( self::CAMPAIGN_FIELDS as $key => $f ) {
+			$cur = $product_object instanceof WC_Product ? (string) $product_object->get_meta( $key ) : '';
+			woocommerce_wp_text_input(
+				array(
+					'id'          => $key,
+					'value'       => 'datetime-local' === $f[1] ? str_replace( ' ', 'T', $cur ) : $cur,
+					'label'       => $f[0],
+					'type'        => $f[1],
+					'desc_tip'    => true,
+					'description' => $f[2],
+				)
+			);
+		}
 		echo '</div>';
 	}
 
@@ -84,6 +99,115 @@ final class KC_Catalog {
 		$role = array_key_exists( $role, self::ROLES ) ? $role : 'package';
 		$product->update_meta_data( '_kc_unit', 'package' === $role ? 'person' : ( in_array( $unit, self::ADDON_UNITS, true ) ? $unit : 'piece' ) );
 		$product->update_meta_data( '_kc_min_qty', max( 1, $min ) );
+		foreach ( self::CAMPAIGN_FIELDS as $key => $f ) {
+			// phpcs:ignore WordPress.Security.NonceVerification.Missing -- WooCommerce verifies the product save nonce.
+			$raw = isset( $_POST[ $key ] ) ? sanitize_text_field( wp_unslash( $_POST[ $key ] ) ) : '';
+			$val = self::clean_campaign_value( $raw, 'date' === $f[1] );
+			if ( '' === $val ) {
+				$product->delete_meta_data( $key );
+			} else {
+				$product->update_meta_data( $key, $val );
+			}
+		}
+	}
+
+	/* ------------------------------------------------------------------ */
+	/* Campaign / time-limited menus (issue #4)                            */
+	/* ------------------------------------------------------------------ */
+
+	/** meta key => [label, input type, help]. Datetimes are Oslo local time 'Y-m-d H:i'; dates 'Y-m-d'. */
+	const CAMPAIGN_FIELDS = array(
+		'_kc_show_from'    => array( 'Vises fra', 'datetime-local', 'Første tidspunkt produktet vises og kan bestilles. Tomt = med en gang.' ),
+		'_kc_show_until'   => array( 'Vises til', 'datetime-local', 'Siste tidspunkt produktet vises og kan bestilles. Tomt = ingen sluttdato.' ),
+		'_kc_pickup_from'  => array( 'Henting fra dato', 'date', 'Tidligste hentedato for dette produktet. Tomt = ingen grense.' ),
+		'_kc_pickup_until' => array( 'Henting til dato', 'date', 'Seneste hentedato for dette produktet. Tomt = ingen grense.' ),
+	);
+
+	/** Accepts 'Y-m-d', 'Y-m-dTH:i' or 'Y-m-d H:i'; returns normalised value or '' when invalid. */
+	public static function clean_campaign_value( $raw, $date_only ) {
+		$raw = trim( str_replace( 'T', ' ', (string) $raw ) );
+		if ( '' === $raw ) {
+			return '';
+		}
+		$tz  = function_exists( 'wp_timezone' ) ? wp_timezone() : new DateTimeZone( 'Europe/Oslo' );
+		$fmt = $date_only ? '!Y-m-d' : '!Y-m-d H:i';
+		$d   = DateTimeImmutable::createFromFormat( $fmt, $raw, $tz );
+		if ( ! $d || $d->format( $date_only ? 'Y-m-d' : 'Y-m-d H:i' ) !== $raw ) {
+			return '';
+		}
+		return $raw;
+	}
+
+	private static function campaign_time( $product, $key ) {
+		$v = (string) $product->get_meta( $key );
+		if ( '' === $v ) {
+			return null;
+		}
+		$d = DateTimeImmutable::createFromFormat( '!Y-m-d H:i', $v, wp_timezone() );
+		return $d ? $d : null;
+	}
+
+	/** Visible and orderable right now (Oslo time)? Products without campaign fields always are. */
+	public static function is_live( $product, $now = null ) {
+		$now   = $now ? $now : new DateTimeImmutable( 'now', wp_timezone() );
+		$from  = self::campaign_time( $product, '_kc_show_from' );
+		$until = self::campaign_time( $product, '_kc_show_until' );
+		if ( $from && $now < $from ) {
+			return false;
+		}
+		if ( $until && $now > $until ) {
+			return false;
+		}
+		return true;
+	}
+
+	/** Pickup date window for the product: array( from 'Y-m-d'|'' , until 'Y-m-d'|'' ). */
+	public static function pickup_window( $product ) {
+		return array( (string) $product->get_meta( '_kc_pickup_from' ), (string) $product->get_meta( '_kc_pickup_until' ) );
+	}
+
+	/** Is the pickup date (Y-m-d) inside the product's window? */
+	public static function pickup_ok( $product, $date ) {
+		list( $from, $until ) = self::pickup_window( $product );
+		if ( '' !== $from && $date < $from ) {
+			return false;
+		}
+		if ( '' !== $until && $date > $until ) {
+			return false;
+		}
+		return true;
+	}
+
+	/** True when the product has any campaign field set. */
+	public static function is_campaign( $product ) {
+		foreach ( array_keys( self::CAMPAIGN_FIELDS ) as $key ) {
+			if ( '' !== (string) $product->get_meta( $key ) ) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/** Short customer label, e.g. «Kun til 31.10» / «Hentes 20.10–31.10». '' for permanent products. */
+	public static function campaign_label( $product ) {
+		$parts = array();
+		$until = self::campaign_time( $product, '_kc_show_until' );
+		if ( $until ) {
+			$parts[] = 'Bestill innen ' . $until->format( 'd.m' );
+		}
+		list( $pf, $pu ) = self::pickup_window( $product );
+		$f = function ( $d ) {
+			$x = DateTimeImmutable::createFromFormat( '!Y-m-d', $d, wp_timezone() );
+			return $x ? $x->format( 'd.m' ) : $d;
+		};
+		if ( '' !== $pf && '' !== $pu ) {
+			$parts[] = 'hentes ' . $f( $pf ) . '–' . $f( $pu );
+		} elseif ( '' !== $pf ) {
+			$parts[] = 'hentes fra ' . $f( $pf );
+		} elseif ( '' !== $pu ) {
+			$parts[] = 'hentes senest ' . $f( $pu );
+		}
+		return $parts ? ucfirst( implode( ', ', $parts ) ) : '';
 	}
 
 	/* ------------------------------------------------------------------ */
@@ -110,7 +234,8 @@ final class KC_Catalog {
 			array_filter(
 				$found,
 				function ( $p ) {
-					return '' !== $p->get_price() && (float) $p->get_price() >= 0;
+					// Published + priced + inside any campaign window (Oslo time). Drafts never reach here.
+					return '' !== $p->get_price() && (float) $p->get_price() >= 0 && self::is_live( $p );
 				}
 			)
 		);
